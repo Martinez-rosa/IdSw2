@@ -1,0 +1,20 @@
+@startuml
+
+class Documento {
+  - titulo: String
+  - contenido: String
+  + Documento(titulo: String, contenido: String)
+  + guardar(): void
+  + getTitulo(): String
+  + getContenido(): String
+}
+
+class DocumentoEnNube {
+  - urlAlmacenamiento: String
+  + DocumentoEnNube(titulo: String, contenido: String, urlAlmacenamiento: String)
+  + guardar(): void
+}
+
+Documento <|-d- DocumentoEnNube
+
+@enduml

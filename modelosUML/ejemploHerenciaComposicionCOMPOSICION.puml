@@ -1,0 +1,32 @@
+@startuml
+
+interface EstrategiaAlmacenamiento {
+  + guardar(titulo: String, contenido: String): void
+}
+
+class AlmacenamientoLocal {
+  + guardar(titulo: String, contenido: String): void
+}
+
+class AlmacenamientoNube {
+  - urlAlmacenamiento: String
+  + AlmacenamientoNube(urlAlmacenamiento: String)
+  + guardar(titulo: String, contenido: String): void
+}
+
+class Documento {
+  - titulo: String
+  - contenido: String
+  - estrategia: EstrategiaAlmacenamiento
+  + Documento(titulo: String, contenido: String, estrategia: EstrategiaAlmacenamiento)
+  + guardar(): void
+  + cambiarEstrategia(nuevaEstrategia: EstrategiaAlmacenamiento): void
+  + getTitulo(): String
+  + getContenido(): String
+}
+
+EstrategiaAlmacenamiento <|.. AlmacenamientoLocal
+EstrategiaAlmacenamiento <|.. AlmacenamientoNube
+Documento o--> EstrategiaAlmacenamiento
+
+@enduml
