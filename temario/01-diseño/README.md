@@ -35,7 +35,7 @@
 
 <div align=center>
 
-|Cuando los programadores piensan en los problemas, en términos de comportamientos y responsabilidades de los objetos, traen con ellos un caudal de intuición, ideas y conocimientos provenientes de su experiencia diaria — |En lugar de un saqueador de bits que saquea estructuras de datos, nosotros tenemos un universo de objetos con buen comportamiento que cortésmente se solicitan entre sí cumplir diversos deseos — |
+|Cuando los programadores piensan en los problemas, en términos de comportamientos y responsabilidades de los objetos, traen con ellos un caudal de intuición, ideas y conocimientos provenientes de su experiencia diaria —|En lugar de un saqueador de bits que saquea estructuras de datos, nosotros tenemos un universo de objetos con buen comportamiento que cortésmente se solicitan entre sí cumplir diversos deseos —|
 |-|-|
 |*Budd, Programación Orientada a Objetos. 1994*|*Ingalls, Design Principles Behind Smalltalk. Byte vol. 6(8)*|
 
@@ -224,16 +224,15 @@ Limitaciones, limitaciones, limitaciones...
 |Puede pasar por alto requisitos no funcionales|Puede volverse inmanejable con muchos casos de uso|Puede ser difícil mantener la consistencia|No ayuda en decisiones técnicas|Puede ser costoso mantener actualizado|
 |No captura bien requisitos de sistema o arquitectónicos|Difícil balance entre abstracción y detalle|La documentación puede crecer excesivamente|Puede subestimar complejidades técnicas|Requiere habilidad para identificar escenarios relevantes|
 
-
 ##### En resumen (ChatGPT dixit)
 
-| Método | Fortalezas Principales | Debilidades Críticas | Mejor para |
-|--------|----------------------|-------------------|------------|
-| Descripción informal (Abbott) | • Simple y rápido de aplicar<br>• Útil para problemas pequeños<br>• Fácil de entender | • No escala bien<br>• Impreciso<br>• Ambigüedad sustantivo/verbo | Prototipos rápidos y sistemas pequeños |
-| Análisis clásico | • Estructurado y sistemático<br>• Cobertura amplia<br>• Fácil de seguir | • Puede generar demasiadas clases<br>• Muy centrado en lo tangible<br>• Falta criterios de priorización | Sistemas con muchos elementos físicos y roles claros |
-| Análisis del dominio | • Rica en conocimiento del negocio<br>• Captura reglas reales<br>• Vocabulario preciso del dominio | • Depende de expertos<br>• Puede ser costoso y lento<br>• Posibles conflictos entre expertos | Sistemas complejos de dominio específico |
-| Análisis del comportamiento | • Enfoque en responsabilidades<br>• Clara separación de concerns<br>• Buena base para OOP | • Subjetivo<br>• Complejidad en colaboraciones<br>• Difícil balance de responsabilidades | Sistemas con comportamientos complejos |
-| Análisis de casos de uso | • Centrado en el usuario<br>• Base para testing<br>• Captura flujos reales | • Puede ser incompleto<br>• Mantenimiento costoso<br>• No cubre aspectos técnicos | Sistemas con fuerte interacción usuario-sistema |
+|Método|Fortalezas Principales|Debilidades Críticas|Mejor para|
+|-|-|-|-|
+|Descripción informal (Abbott)|• Simple y rápido de aplicar<br>• Útil para problemas pequeños<br>• Fácil de entender|• No escala bien<br>• Impreciso<br>• Ambigüedad sustantivo/verbo|Prototipos rápidos y sistemas pequeños|
+|Análisis clásico|• Estructurado y sistemático<br>• Cobertura amplia<br>• Fácil de seguir|• Puede generar demasiadas clases<br>• Muy centrado en lo tangible<br>• Falta criterios de priorización|Sistemas con muchos elementos físicos y roles claros|
+|Análisis del dominio|• Rica en conocimiento del negocio<br>• Captura reglas reales<br>• Vocabulario preciso del dominio|• Depende de expertos<br>• Puede ser costoso y lento<br>• Posibles conflictos entre expertos|Sistemas complejos de dominio específico|
+|Análisis del comportamiento|• Enfoque en responsabilidades<br>• Clara separación de concerns<br>• Buena base para OOP|• Subjetivo<br>• Complejidad en colaboraciones<br>• Difícil balance de responsabilidades|Sistemas con comportamientos complejos|
+|Análisis de casos de uso|• Centrado en el usuario<br>• Base para testing<br>• Captura flujos reales|• Puede ser incompleto<br>• Mantenimiento costoso<br>• No cubre aspectos técnicos|Sistemas con fuerte interacción usuario-sistema|
 
 ###### Recomendaciones de uso
 
@@ -253,3 +252,95 @@ Estos métodos no deberían verse como algo mutuamente excluyente, sino como her
    - Restricciones de tiempo y recursos
    - Experiencia del equipo
    - Criticidad del sistema
+
+#### Relaciones entre clases
+
+<div align=center>
+
+<big>Un objeto en sí mismo no es interesante.Los objetos contribuyen<br>al comportamiento de un sistema colaborando con otros objetos</big><br><i>Grady Booch - Análisis y Diseño Orientado a Objetos. 1996</i>
+
+</div>
+
+A la relación entre clases ahora se le llama "dependencia".
+
+<div align=center>
+
+|Por colaboración|Por transmisión|
+|-|-|
+|A través del paso de mensajes|Mediante la transmisión de todos sus miembros, atributos y métodos, para organizar una jerarquía de clasificación, sin negar ni obligar a la colaboración entre objetos de las clases participantes.|
+|• Composición|• Herencia por extensión|
+|• Agregación|• Herencia por implementación|
+|• Asociación||
+|• Uso||
+
+</div>
+
+##### Relaciones por colaboración
+
+|Característica|Definición|Ejemplo||
+|-|-|-|-|
+|**Visibilidad**|Determina el alcance de acceso a un objeto colaborador, estableciendo si la relación es exclusiva (privada) o compartida (pública) con otros objetos del sistema.|**Privada:** Una persona con su diario personal que nadie más puede leer.<br><br>**Pública:** Un libro de la biblioteca que puede ser consultado por cualquier usuario registrado.|**Privada:** Un `DocumentoWord` mantiene una referencia exclusiva a su `Historial` de cambios que no es accesible por otros objetos.<br><br>**Pública:** Una instancia de `ImpresoraDeRed` es accesible y utilizada por múltiples objetos `Usuario` simultáneamente.|
+|**Temporalidad**|Define la duración de la relación de colaboración entre objetos, clasificándola en efímera (limitada a una operación específica), acotada (por un período definido) o persistente (durante toda la vida del objeto).|**Efímera:** Un pasajero que interactúa con un conductor de taxi solo durante un viaje.<br><br>**Persistente:** Una persona y su teléfono móvil que mantiene durante años.|**Efímera:** Un objeto `Validador` que colabora con un objeto `DatosFormulario` solo durante el proceso de validación.<br><br>**Persistente:** Un objeto `Documento` que mantiene una colaboración continua con sus objetos `Párrafo` durante toda su existencia.|
+|**Versatilidad**|Representa el grado de intercambiabilidad de los objetos colaboradores, indicando si un objeto requiere colaborar con una instancia específica o puede trabajar con cualquier instancia que cumpla una interfaz determinada.|**Baja versatilidad:** Una llave específica que solo abre una cerradura concreta.<br><br>**Alta versatilidad:** Un conductor que puede manejar cualquier automóvil con transmisión automática.|**Baja versatilidad:** Un objeto `ReproductorDeVideo` que solo puede reproducir archivos de un `FormatoEspecífico`.<br><br>**Alta versatilidad:** Un objeto `Notificador` que puede enviar mensajes a través de cualquier objeto que implemente la interfaz `MedioDeNotificación` (email, SMS, notificación push).|
+
+###### Composición & Agregación
+
+Se puede determinar que existe una relación de composición entre la clase A (el todo) y la clase B (la parte) si un objeto de la clase A “tiene un” / "contiene" / "posee" un objeto de la clase B.
+
+||Composición|Agregación|
+|-|-|-|
+|Definición|Es una relación entre el todo y la parte donde el ciclo de vida de la parte está controlado por el todo. Representa una asociación "tiene un" donde la dependencia es fuerte.|Es una relación entre el todo y la parte donde el ciclo de vida de la parte es independiente del todo. Representa una asociación "tiene un" donde la dependencia es débil.|
+|Dependencia del ciclo de vida|La vida del objeto de la clase contenida debe coincidir con la vida de la clase contenedor.|La vida del objeto de la clase contenida NO debe coincidir con la vida de la clase contenedor.|
+|Naturaleza de los componentes|Los componentes constituyen una parte esencial e indispensable del objeto compuesto.|Los componentes constituyen OPCIONALMENTE una parte del objeto compuesto.|
+|Efecto de la supresión|La supresión del objeto compuesto conlleva la supresión de los componentes.|La destrucción del compuesto NO conlleva la destrucción de los componentes.|
+|Exclusividad|Los componentes NO pueden ser compartidos por varios objetos compuestos.|Los componentes pueden ser compartidos por varios compuestos.|
+|Tipo de composición|Conocida como "composición fuerte".|Conocida como "composición débil".|
+|**Visibilidad**|Privada|Pública/Protegida|
+|**Temporalidad**|Alta|Baja|
+|**Versatilidad**|Baja|Alta|
+|**Implantación**|Mediante atributos privados con instanciación en el constructor del objeto contenedor, garantizando así que el ciclo de vida del componente esté estrictamente vinculado al del objeto que lo contiene.|El objeto contenido (Parte) se crea fuera del objeto contenedor (Todo) y se proporciona a través del constructor o un método setter|
+|Ejemplo|Persona y cabeza: una cabeza solo puede pertenecer a una persona y no puede existir sin ella.|Persona y familia: una persona puede pertenecer a múltiples familias a lo largo de su vida y seguir existiendo aunque las familias dejen de existir.|
+|Ejemplo|Documento y párrafos: al eliminar un documento se eliminan todos sus párrafos, que no existen fuera del documento.|Universidad y estudiantes: los estudiantes pueden existir antes de ingresar y después de salir de la universidad, y pueden pertenecer a varias instituciones educativas simultáneamente.|
+
+
+<table>
+<tr><th>Composición</th><th>Agregación</th></tr>
+<tr><td valign=top>
+
+```java
+class Libro {
+    private Pagina[] paginas;
+    
+    public Libro() {
+        this.paginas = new Pagina[100];
+        for (int i = 0; i < 100; i++) {
+            this.paginas[i] = new Pagina();
+        }
+    }
+}
+
+class Pagina {
+
+}
+```
+</td><td valign=top>
+
+```java
+class Equipo {
+    private Jugador[] jugadores;
+    
+    public Equipo(Jugador[] jugadores) {
+        this.jugadores = jugadores;
+    }
+}
+
+class Jugador {
+    private String nombre;
+    
+    public Jugador(String nombre) {
+        this.nombre = nombre;
+    }
+}
+```
+</td></tr>
+</table>
