@@ -159,7 +159,7 @@ class Autobus {
 
 </div>
 
-## Resumen
+### Resumen
 
 <div align=center>
 
@@ -180,7 +180,7 @@ La decisión de utilizar una agregación es discutible y suele ser arbitraria. C
 
 No existe para toda colaboración un relación ideal categórica. Es muy frecuente que sean varias relaciones candidatas, cada una con sus ventajas y desventajas. Por tanto, al existir diversas alternativas, será una decisión de ingeniería, un compromiso entre múltiples factores no cuantificables: costes, modularidad, legibilidad, eficiencia, etc., la que determine la relación final.
 
-## Propuesta
+### Propuesta
 
 |Usar|Composición|Agregación|Asociación|Uso|
 |-|-|-|-|-|
@@ -269,3 +269,224 @@ class Impresor {
     }
 }
 ```
+
+## Relaciones por transmisión
+
+Herencia
+
+|Por especialización|Por extensión|Por limitación|Por construcción|
+|-|-|-|-|
+La clase descendiente implementa todas las operaciones de la clase base, añadiendo o redefiniendo partes especializadas|La especialización transforma el concepto de la clase base a la clase derivada|La clase descendiente ***no implementa todas*** las operaciones de la clase base, completamente desaconsejada porque imposibilita el tratamiento polimórfico|La clase utiliza la herencia simplemente como un mecanismo de reutilización de código, no de modelado de conceptos: realmente es una relación de composición.
+|Bien|Bien|***¡Mal!***|***¡Mal!***|
+
+### Por especialización
+
+```java
+class Coordenada {
+    private float x;
+    private float y;
+    
+    public Coordenada(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    public float getX() {
+        return x;
+    }
+    
+    public void setX(float x) {
+        this.x = x;
+    }
+    
+    public float getY() {
+        return y;
+    }
+    
+    public void setY(float y) {
+        this.y = y;
+    }
+}
+abstract class Figura {
+    protected Coordenada centro;
+    
+    public Figura(Coordenada centro) {
+        this.centro = centro;
+    }
+    
+    public void mover(float x, float y) {
+        centro.setX(centro.getX() + x);
+        centro.setY(centro.getY() + y);
+    }
+    
+    public Coordenada getCentro() {
+        return centro;
+    }
+    
+    public abstract float getPerimetro();
+    
+    public abstract float getArea();
+}
+
+class Circulo extends Figura {
+    private float radio;
+    
+    public Circulo(Coordenada centro, float radio) {
+        super(centro);
+        this.radio = radio;
+    }
+    
+    public float getRadio() {
+        return radio;
+    }
+    
+    @Override
+    public float getPerimetro() {
+        return 2 * (float)Math.PI * radio;
+    }
+    
+    @Override
+    public float getArea() {
+        return (float)Math.PI * radio * radio;
+    }
+}
+
+class Rectangulo extends Figura {
+    private float ancho;
+    private float alto;
+    
+    public Rectangulo(Coordenada centro, float ancho, float alto) {
+        super(centro);
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+    
+    public float getAncho() {
+        return ancho;
+    }
+    
+    public float getAlto() {
+        return alto;
+    }
+    
+    @Override
+    public float getPerimetro() {
+        return 2 * (ancho + alto);
+    }
+    
+    @Override
+    public float getArea() {
+        return ancho * alto;
+    }
+}
+```
+
+### Por extensión
+
+```java
+class Cuenta {
+    protected double saldo;
+    
+    public void depositar(double monto) {
+        saldo = saldo + monto;
+    }
+    
+    public boolean retirar(double monto) {
+        if (monto <= saldo) {
+            saldo = saldo - monto;
+            return true;
+        }
+        return false;
+    }
+}
+
+class CuentaRemunerada extends Cuenta {
+    private double tasaInteres;
+    
+    public CuentaRemunerada(double tasaInteres) {
+        this.tasaInteres = tasaInteres;
+    }
+    
+    public void aplicarInteres() {
+        double interes = saldo * tasaInteres;
+        depositar(interes);
+    }
+}
+```
+
+### Herencia por limitación
+
+```java
+
+abstract class DispositivoElectronico {
+    void encender();
+    void apagar();
+    void conectarWiFi();
+}
+
+class RelojDigital extends DispositivoElectronico {
+
+    public void encender() {
+        (...)
+    }
+    
+    public void apagar() {
+        (...)
+    }
+    
+    public void conectarWiFi() {
+        throw new UnsupportedOperationException("Este reloj no soporta WiFi");
+    }
+}
+```
+
+### Herencia por construcción
+
+```java
+class BaseDeDatos {
+    protected Connection conexion;
+    
+    public void conectar() {
+        (...)        
+    }
+    
+    public void desconectar() {
+        (...)        
+    }
+}
+
+class Reporte extends BaseDeDatos {   
+
+    public void generarReporte() {
+        conectar();
+        
+        (...)
+
+        desconectar();
+    }
+}
+```
+
+## Comparativa entre Herencia y Composición
+
+| Aspecto | Composición | Herencia |
+|-|-|-|
+| **Relación** | **"Tiene un"** - Establece una relación de contención donde un objeto contiene a otro como parte de su estructura. | **"Es un"** - Establece una relación de tipo o subtipo (ISA - Is A relationship) donde la clase derivada es un tipo específico de la clase base. |
+| **Concepto** | Permite a una clase contener instancias de otras clases como atributos, delegando funcionalidades a estos componentes. | Permite a una clase heredar características (atributos y métodos) de otra clase, estableciendo una jerarquía de especialización. |
+| **Acoplamiento** | **Bajo acoplamiento** - Los cambios en la clase componente tienen menor impacto en la clase contenedora. | **Alto acoplamiento** - Los cambios en la clase base pueden afectar a todas las clases derivadas. |
+| **Flexibilidad** | **Mayor flexibilidad** - Los componentes pueden cambiarse en tiempo de ejecución y una clase puede combinar múltiples componentes. | **Menor flexibilidad** - La relación se establece en tiempo de compilación y no puede alterarse dinámicamente. |
+| **Ejemplo práctico** | Un `Automóvil` tiene un `Motor`, un `Sistema de frenos` y `Ruedas`. El automóvil delega funcionalidades específicas a cada componente. | Un `Todoterreno` es un `Automóvil`. El Todoterreno hereda todas las características generales de un automóvil, añadiendo o modificando algunas específicas. |
+| **Cuando usar** | - Cuando la relación entre objetos puede cambiar en el tiempo<br>- Cuando se necesita reutilizar componentes en diferentes contextos<br>- Cuando la clase "contenedora" necesita utilizar múltiples funcionalidades de varias clases | - Cuando existe una clara relación "es un"<br>- Cuando se quiere reutilizar código de la clase base<br>- Cuando se necesita que las subclases sean tratadas como la clase base (polimorfismo) |
+| **Recomendación** | Preferir la composición en caso de duda, ya que ofrece mayor flexibilidad y menor acoplamiento. | Usar herencia solo cuando existe una genuina relación taxonómica y todas las instancias de la subclase pueden sustituir a la clase base sin problemas. |
+| **Regla práctica** | **"Favorece la composición sobre la herencia"** - Principio general de diseño orientado a objetos. | Si un objeto puede tener más de una instancia del componente, la herencia no es apropiada. Usar composición. |
+
+## Explicación adicional
+
+La decisión entre usar herencia o composición es fundamental en el diseño orientado a objetos:
+
+|Herencia|Composición|
+|-|-|
+|Permite modelar relaciones donde una entidad es un tipo específico de otra. Refleja una especialización conceptual y facilita el polimorfismo.|Permite crear objetos complejos combinando objetos más simples como partes.|
+|Sin embargo, crea un acoplamiento fuerte entre clases y puede llevar a jerarquías complejas difíciles de mantener.|Ofrece mayor flexibilidad al poder cambiar componentes en tiempo de ejecución y facilita la reutilización de código sin crear dependencias fuertes.|
+
+En la práctica, muchos desarrolladores siguen el principio "favorece la composición sobre la herencia" para crear diseños más flexibles y mantenibles. La herencia se reserva para casos donde existe una clara relación taxonómica que se mantendrá estable en el tiempo.
