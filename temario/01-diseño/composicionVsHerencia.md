@@ -1,15 +1,8 @@
 # *#2Think*
 
+Este ejercicio presenta un sistema de gestión de documentos que debe manejar diferentes estrategias de almacenamiento.
+
 ## Con herencia
-
-<div align=center>
-
-
-|![](/images/modelosUML/ejemploHerenciaComposicionHERENCIA.svg)
-|-
-|
-
-</div>
 
 ```java
 
@@ -84,15 +77,6 @@ Convirtamos esta jerarquía de herencia en una composición:
 - Esto le permitirá cambiar dinámicamente el cómo se guarda un documento.
 
 ## Con composición
-
-<div align=center>
-
-
-|![](/images/modelosUML/ejemploHerenciaComposicionCOMPOSICION.svg)
-|-
-|
-
-</div>
 
 ```java
 interface EstrategiaAlmacenamiento {
@@ -175,3 +159,12 @@ Con este enfoque basado en composición:
 - Podríamos implementar fácilmente una estrategia de almacenamiento híbrida que guardara tanto local como en la nube.
 
 Esta solución representa un uso de composición donde "un documento tiene una estrategia de almacenamiento" en lugar de "un documento en nube es un documento".
+
+## Comparación
+
+<div align=center>
+
+|![](/images/modelosUML/ejemploHerenciaComposicionHERENCIA.svg)|![](/images/modelosUML/ejemploHerenciaComposicionCOMPOSICION.svg)
+|-|-|
+
+</div>
