@@ -413,3 +413,18 @@ class Autobus {
 </table>
 
 </div>
+
+##### Resumen
+
+<div align=center>
+
+![](/images/caau.png)
+
+||||
+|-|-|-|
+|Composición|![](/images/composicion.png)|"todo-parte" en la que el "todo" controla la creación y eliminación de las partes. El objeto principal es responsable de la creación y la destrucción de los objetos secundarios, y los objetos secundarios no pueden existir sin el objeto principal.
+|Agregación|![](/images/agregacion.png)|"todo-parte" en la que las partes pueden existir sin el objeto principal. En este caso, el objeto principal tiene una referencia a los objetos secundarios, pero no controla su creación ni su eliminación.
+|Asociación|![](/images/asociacion.png)|Ambos pueden existir de forma independiente. La asociación puede ser unidireccional o bidireccional, y puede tener multiplicidades que indican cuántos objetos están involucrados en la relación.
+|Uso|![](/images/uso.png)|Un objeto utiliza los servicios o características de otro objeto, sin ser una parte del objeto utilizado. Esta relación es más débil que la asociación y no implica una relación estructural.
+
+</div>
