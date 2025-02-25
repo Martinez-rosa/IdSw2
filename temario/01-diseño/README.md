@@ -304,7 +304,6 @@ Se puede determinar que existe una relación de composición entre la clase A (e
 |Ejemplo|Persona y cabeza: una cabeza solo puede pertenecer a una persona y no puede existir sin ella.|Persona y familia: una persona puede pertenecer a múltiples familias a lo largo de su vida y seguir existiendo aunque las familias dejen de existir.|
 |Ejemplo|Documento y párrafos: al eliminar un documento se eliminan todos sus párrafos, que no existen fuera del documento.|Universidad y estudiantes: los estudiantes pueden existir antes de ingresar y después de salir de la universidad, y pueden pertenecer a varias instituciones educativas simultáneamente.|
 
-
 <table>
 <tr><th>Composición</th><th>Agregación</th></tr>
 <tr><td valign=top>
@@ -353,22 +352,28 @@ class Jugador {
 
 </div>
 
-###### Asociación
+###### Asociación & Uso
 
-|Característica|Asociación|
-|-|-|
-|Definición|Es la relación que perdura entre un cliente y un servidor determinado, donde se establece una dependencia funcional pero no existencial.|
-|Naturaleza|Representa una conexión donde un objeto utiliza los servicios de otro objeto para cumplir su responsabilidad, manteniéndose ambos independientes en su ciclo de vida.|
-|Dependencia|El objeto cliente depende de los servicios que proporciona el objeto servidor, pero no de su existencia como tal.|
-|Temporalidad|La relación puede establecerse y mantenerse a lo largo del tiempo en diversos momentos, no necesariamente de manera continua.|
-|Exclusividad|No implica exclusividad; un servidor puede atender a múltiples clientes y un cliente puede relacionarse con varios servidores.|
-|**Visibilidad**|Privada|
-|**Temporalidad**|Alta/Media|
-|**Versatilidad**|Baja|
-|**Implantación**|Mediante atributos y constructor, métodos de asociación o referencias privadas con ciclo de vida igual al objeto|
-|Ejemplo|Persona (cliente) y banco (servidor): la persona utiliza los servicios del banco para gestionar su dinero, pero ambos existen independientemente.|
-|Ejemplo|Objeto Editor (cliente) y objeto Archivo (servidor): el editor utiliza los servicios del archivo para cargar y guardar contenido, pero ambos tienen ciclos de vida independientes.|
+<div align=center>
 
+|Característica|Asociación|Uso|
+|-|-|-|
+|Definición|Es la relación que perdura entre un cliente y un servidor determinado, donde se establece una dependencia funcional pero no existencial.|Es la relación que se establece momentáneamente entre un cliente y cualquier servidor, donde el cliente utiliza los servicios del servidor de forma puntual sin crear una dependencia permanente.|
+|Naturaleza|Representa una conexión donde un objeto utiliza los servicios de otro objeto para cumplir su responsabilidad, manteniéndose ambos independientes en su ciclo de vida.|Representa una conexión temporal donde un objeto (cliente) utiliza los servicios de otro objeto (servidor) para cumplir una tarea específica, sin mantener una referencia persistente.|
+|Dependencia|El objeto cliente depende de los servicios que proporciona el objeto servidor, pero no de su existencia como tal.|El objeto cliente requiere temporalmente del servidor para completar una operación específica, pero no mantiene una dependencia a largo plazo.|
+|Temporalidad|La relación puede establecerse y mantenerse a lo largo del tiempo en diversos momentos, no necesariamente de manera continua.|La relación es transitoria y existe únicamente durante la ejecución de una operación concreta, sin persistir después de completada.|
+|Exclusividad|No implica exclusividad; un servidor puede atender a múltiples clientes y un cliente puede relacionarse con varios servidores.|No existe exclusividad; el cliente puede utilizar cualquier servidor que ofrezca el servicio requerido en ese momento.|
+|**Visibilidad**|Privada|Pública y Privada|
+|**Temporalidad**|Alta/Media|Baja|
+|**Versatilidad**|Baja|Alta|
+|**Implantación**|Mediante atributos y constructor, métodos de asociación o referencias privadas con ciclo de vida igual al objeto|Típicamente mediante parámetros de método o variables locales con un ámbito limitado, donde la referencia al objeto servidor existe únicamente durante la ejecución del método en el que se utiliza. No se almacena como atributo de la clase cliente, lo que evita crear dependencias permanentes y favorece un bajo acoplamiento entre componentes.|
+|Ejemplo|Persona (cliente) y banco (servidor): la persona utiliza los servicios del banco para gestionar su dinero, pero ambos existen independientemente.|Un ciudadano (cliente) que utiliza un autobús (servidor) para desplazarse en un trayecto específico, sin compromiso de utilizarlo nuevamente.|
+|Ejemplo|Objeto Editor (cliente) y objeto Archivo (servidor): el editor utiliza los servicios del archivo para cargar y guardar contenido, pero ambos tienen ciclos de vida independientes.|Un método que utiliza un objeto formateador temporalmente para convertir datos a una representación específica, sin almacenarlo como atributo.|
+
+
+<table>
+<tr><th>Asociación</th><th>Uso</th></tr>
+<tr><td valign=top>
 
 ```java
 class Ordenador {
@@ -387,24 +392,7 @@ class DiscoSSD {
     }
 }
 ```
-
-###### Uso
-
-|Característica|Relación de Dependencia/Uso|
-|-|-|
-|Definición|Es la relación que se establece momentáneamente entre un cliente y cualquier servidor, donde el cliente utiliza los servicios del servidor de forma puntual sin crear una dependencia permanente.|
-|Naturaleza|Representa una conexión temporal donde un objeto (cliente) utiliza los servicios de otro objeto (servidor) para cumplir una tarea específica, sin mantener una referencia persistente.|
-|Dependencia|El objeto cliente requiere temporalmente del servidor para completar una operación específica, pero no mantiene una dependencia a largo plazo.|
-|Temporalidad|La relación es transitoria y existe únicamente durante la ejecución de una operación concreta, sin persistir después de completada.|
-|Exclusividad|No existe exclusividad; el cliente puede utilizar cualquier servidor que ofrezca el servicio requerido en ese momento.|
-|**Visibilidad**|Pública y Privada|
-|**Temporalidad**|Baja|
-|**Versatilidad**|Alta|
-|**Implantación**|Típicamente mediante parámetros de método o variables locales con un ámbito limitado, donde la referencia al objeto servidor existe únicamente durante la ejecución del método en el que se utiliza. No se almacena como atributo de la clase cliente, lo que evita crear dependencias permanentes y favorece un bajo acoplamiento entre componentes.|
-|Ejemplo|Un ciudadano (cliente) que utiliza un autobús (servidor) para desplazarse en un trayecto específico, sin compromiso de utilizarlo nuevamente.|
-|Ejemplo|Un método que utiliza un objeto formateador temporalmente para convertir datos a una representación específica, sin almacenarlo como atributo.|
-
-Esta relación difiere de la asociación en que no establece un vínculo duradero entre objetos, sino que representa una interacción puntual y sin compromisos futuros, lo que conlleva un bajo acoplamiento entre las clases involucradas.
+</td><td valign=top>
 
 ```java
 class Alumno {
@@ -421,4 +409,7 @@ class Autobus {
    public void bajar() {};
 }
 ```
+</td></tr>
+</table>
 
+</div>
