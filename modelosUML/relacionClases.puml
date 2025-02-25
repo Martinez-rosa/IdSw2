@@ -1,0 +1,6 @@
+class Todo
+
+Todo *-d- Parte
+Agregación o-d- Agregado
+Asociación -d-> Asociado
+Uso .d.> Usado
