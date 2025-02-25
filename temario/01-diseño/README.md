@@ -377,7 +377,7 @@ class Jugador {
 
 ```java
 class Ordenador {
-    private DiscoSolido disco;
+    private DiscoSSD disco;
     
     public Ordenador(DiscoSSD discoSSD) {
         this.disco = discoSSD;
