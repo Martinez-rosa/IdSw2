@@ -428,3 +428,27 @@ class Autobus {
 |Uso|![](/images/uso.png)|Un objeto utiliza los servicios o características de otro objeto, sin ser una parte del objeto utilizado. Esta relación es más débil que la asociación y no implica una relación estructural.
 
 </div>
+
+La decisión de utilizar una agregación es discutible y suele ser arbitraria. Con frecuencia, no resulta evidente que una asociación deba ser modelada en forma de agregación, En gran parte, este tipo de incertidumbre es típico del modelado; este requiere un juicio bien formado y hay pocas reglas inamovibles. La experiencia demuestra que si uno piensa cuidadosamente e intenta ser congruente la distinción imprecisa entre asociación ordinaria y agregación no da lugar a problemas en la práctica. — Rumbaugh 1991
+
+No existe para toda colaboración un relación ideal categórica. Es muy frecuente que sean varias relaciones candidatas, cada una con sus ventajas y desventajas. Por tanto, al existir diversas alternativas, será una decisión de ingeniería, un compromiso entre múltiples factores no cuantificables: costes, modularidad, legibilidad, eficiencia, etc., la que determine la relación final.
+
+##### Propuesta
+
+|Usar|Composición|Agregación|Asociación|Uso|
+|-|-|-|-|-|
+|**Cuando...**|La parte no tiene sentido o no puede existir sin el todo|Las partes pueden existir independientemente del todo|Se necesita una relación duradera pero no de contenencia|La interacción es temporal y limitada a operaciones específicas|
+||Se quiera garantizar que cuando el objeto contenedor sea destruido, sus partes también lo sean|Varios objetos "todo" pueden compartir las mismas partes|Los objetos colaboran pero mantienen identidades separadas|Se quiera minimizar el acoplamiento entre clases|
+||Se necesita un control estricto sobre el ciclo de vida de los componentes|Se necesita flexibilidad para añadir o quitar componentes durante la vida del objeto contenedor|La relación es más bien "trabaja con" en lugar de "tiene un"|No se necesita mantener una referencia persistente al otro objeto|
+||La relación es claramente "***es parte de***" y no solo "***usa a***"|La relación es "***tiene un***" pero sin control existencial|Ambos objetos tienen ciclos de vida independientes|La relación es claramente "***usa temporalmente a***"|
+
+Dicho esto...
+
+En la práctica, estas decisiones suelen basarse en:
+
+- El análisis conceptual del dominio del problema.
+- Consideraciones sobre mantenibilidad y flexibilidad.
+- Requisitos de rendimiento y eficiencia.
+- Patrones de diseño aplicables al contexto específico.
+
+> Un enfoque pragmático es comenzar con la relación más débil posible (Uso) y fortalecer la relación solo cuando sea necesario, siguiendo principios como el bajo acoplamiento y la alta cohesión.
