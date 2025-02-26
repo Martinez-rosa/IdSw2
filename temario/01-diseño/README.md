@@ -41,8 +41,8 @@ Origen de identificadores del problema/solución.
 
 </div>
 
-  - [Estrategias de clasificación](estrategiasClasificacion.md).
-  - [Relaciones entre clases](relacionesClases.md).
+- [Estrategias de clasificación](estrategiasClasificacion.md).
+- [Relaciones entre clases](relacionesClases.md).
 
 > El [***antipatrón descomposición funcional***](descomposicionFuncional.md) se da cuando en lugar de pensar en términos de objetos y sus responsabilidades, tomamos un enfoque procedural y simplemente convertimos cada función o procedimiento en una clase.
 
