@@ -8,6 +8,4 @@
 - [Diseño](temario/01-diseño/README.md)
   - [Estrategias de clasificación](temario/01-diseño/estrategiasClasificacion.md)
   - [Relaciones entre clases](temario/01-diseño/relacionesClases.md)
-  - Legibilidad de los artefactos
-
-## Retos
+  - [Legibilidad de los artefactos](temario/01-diseño/legibilidad.md)
