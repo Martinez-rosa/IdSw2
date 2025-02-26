@@ -22,6 +22,12 @@ A la relación entre clases ahora se le llama "dependencia".
 
 ## Relaciones por colaboración
 
+<div align=center>
+
+![](/images/modelosUML/relacionClases.svg)
+
+</div>
+
 |Característica|Definición|Ejemplo||
 |-|-|-|-|
 |**Visibilidad**|Determina el alcance de acceso a un objeto colaborador, estableciendo si la relación es exclusiva (privada) o compartida (pública) con otros objetos del sistema.|**Privada:** Una persona con su diario personal que nadie más puede leer.<br><br>**Pública:** Un libro de la biblioteca que puede ser consultado por cualquier usuario registrado.|**Privada:** Un `DocumentoWord` mantiene una referencia exclusiva a su `Historial` de cambios que no es accesible por otros objetos.<br><br>**Pública:** Una instancia de `ImpresoraDeRed` es accesible y utilizada por múltiples objetos `Usuario` simultáneamente.|
@@ -163,9 +169,9 @@ class Autobus {
 
 <div align=center>
 
-![](/images/modelosUML/relacionClases.svg)
-
-![](/images/caau.png)
+|![](/images/modelosUML/relacionClases.svg)
+|-
+|![](/images/caau.png)
 
 ||||
 |-|-|-|
