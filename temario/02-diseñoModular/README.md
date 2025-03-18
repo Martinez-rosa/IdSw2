@@ -36,6 +36,8 @@ Una creencia errónea pero común es que un diseño inspirado directamente en el
 
 Los intentos de desarrollar un sistema de calidad sin principios de diseño sólidos suelen conducir a estructuras difíciles de entender, modificar, probar y reutilizar.
 
+> [Ver ejemplo](ejemplo/diseñoBasadoMdD.md)
+
 ## ¿Qué?
 
 El Diseño Modular constituye un enfoque fundamental para abordar los problemas anteriormente descritos. Se trata de un conjunto de principios y prácticas orientados a estructurar el software en componentes bien definidos, con responsabilidades claras e interacciones controladas.

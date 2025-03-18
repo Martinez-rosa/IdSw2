@@ -1,0 +1,171 @@
+@startuml
+
+interface RepositorioLibros {
+  +guardarLibro(libro: Libro): void
+  +buscarPorISBN(isbn: String): Libro
+  +actualizarEstadoLibro(libro: Libro): void
+  +listarTodos(): List<Libro>
+}
+
+interface RepositorioUsuarios {
+  +guardarUsuario(usuario: Usuario): void
+  +buscarPorId(id: int): Usuario
+  +actualizarUsuario(usuario: Usuario): void
+}
+
+interface RepositorioPrestamos {
+  +registrarPrestamo(prestamo: Prestamo): void
+  +cerrarPrestamo(prestamo: Prestamo): void
+  +buscarPrestamosActivos(): List<Prestamo>
+  +buscarPrestamoPorLibro(libro: Libro): Prestamo
+}
+
+interface ServicioNotificacion {
+  +enviarNotificacion(destinatario: String, asunto: String, contenido: String): void
+}
+
+class Libro {
+  -isbn: String
+  -titulo: String
+  -autor: String
+  -disponible: boolean
+  +isDisponible(): boolean
+  +setDisponible(disponible: boolean): void
+  +getTitulo(): String
+  +getIsbn(): String
+}
+
+class Usuario {
+  -id: int
+  -nombre: String
+  -email: String
+  -multas: List<Multa>
+  +agregarMulta(multa: Multa): void
+  +getTotalMultasPendientes(): double
+  +getNombre(): String
+  +getEmail(): String
+}
+
+class Prestamo {
+  -id: int
+  -libro: Libro
+  -usuario: Usuario
+  -fechaPrestamo: Date
+  -fechaVencimiento: Date
+  -fechaDevolucion: Date
+  +estaActivo(): boolean
+  +estaVencido(): boolean
+  +getDiasRetraso(): int
+  +registrarDevolucion(): void
+  +getLibro(): Libro
+  +getUsuario(): Usuario
+}
+
+class Multa {
+  -id: int
+  -monto: double
+  -fechaGeneracion: Date
+  -prestamo: Prestamo
+  -pagada: boolean
+  +isPagada(): boolean
+  +pagar(): void
+  +getMonto(): double
+}
+
+class GestorInventario {
+  -repositorioLibros: RepositorioLibros
+  +agregarLibro(libro: Libro): void
+  +darDeBaja(isbn: String): void
+  +buscarLibro(isbn: String): Libro
+  +listarDisponibles(): List<Libro>
+}
+
+class GestorUsuarios {
+  -repositorioUsuarios: RepositorioUsuarios
+  -servicioNotificacion: ServicioNotificacion
+  +registrarUsuario(usuario: Usuario): void
+  +buscarUsuario(id: int): Usuario
+  +verificarElegibilidadPrestamo(usuario: Usuario): boolean
+}
+
+class ServicioPrestamos {
+  -repositorioPrestamos: RepositorioPrestamos
+  -repositorioLibros: RepositorioLibros
+  -repositorioUsuarios: RepositorioUsuarios
+  -calculadorMultas: CalculadorMultas
+  -servicioNotificacion: ServicioNotificacion
+  +prestarLibro(isbn: String, idUsuario: int): Prestamo
+  +devolverLibro(isbn: String): void
+  +renovarPrestamo(idPrestamo: int): boolean
+  +listarPrestamosActivos(): List<Prestamo>
+  +listarPrestamosVencidos(): List<Prestamo>
+}
+
+class CalculadorMultas {
+  -tarifaDiaria: double
+  +calcularMulta(prestamo: Prestamo): double
+  +generarMulta(prestamo: Prestamo): Multa
+}
+
+class ServicioReportes {
+  -repositorioLibros: RepositorioLibros
+  -repositorioPrestamos: RepositorioPrestamos
+  +generarReporteLibrosMasSolicitados(): List<ReporteLibro>
+  +generarReporteUsuariosConMultas(): List<ReporteUsuario>
+}
+
+class RepositorioLibrosBaseDatos {
+  -conexion: Conexion
+}
+
+class RepositorioUsuariosBaseDatos {
+  -conexion: Conexion
+}
+
+class RepositorioPrestamosBaseDatos {
+  -conexion: Conexion
+}
+
+class ServicioNotificacionEmail {
+  -configuracionSMTP: ConfiguracionSMTP
+}
+
+class ServicioNotificacionSMS {
+  -configuracionSMS: ConfiguracionSMS
+}
+
+class SistemaBiblioteca {
+  -gestorInventario: GestorInventario
+  -gestorUsuarios: GestorUsuarios
+  -servicioPrestamos: ServicioPrestamos
+  -servicioReportes: ServicioReportes
+  +inicializarSistema(): void
+}
+
+RepositorioLibrosBaseDatos .u.|> RepositorioLibros
+RepositorioUsuariosBaseDatos .u.|> RepositorioUsuarios
+RepositorioPrestamosBaseDatos .u.|> RepositorioPrestamos
+ServicioNotificacionEmail .u.|> ServicioNotificacion
+ServicioNotificacionSMS .u.|> ServicioNotificacion
+
+GestorInventario --> RepositorioLibros
+GestorUsuarios --> RepositorioUsuarios
+GestorUsuarios --> ServicioNotificacion
+ServicioPrestamos --> RepositorioPrestamos
+ServicioPrestamos --> RepositorioLibros
+ServicioPrestamos --> RepositorioUsuarios
+ServicioPrestamos --> CalculadorMultas
+ServicioPrestamos --> ServicioNotificacion
+ServicioReportes --> RepositorioLibros
+ServicioReportes --> RepositorioPrestamos
+
+SistemaBiblioteca --> GestorInventario
+SistemaBiblioteca --> GestorUsuarios
+SistemaBiblioteca --> ServicioPrestamos
+SistemaBiblioteca --> ServicioReportes
+
+Prestamo --> Libro
+Prestamo --> Usuario
+Multa --> Prestamo
+
+@enduml

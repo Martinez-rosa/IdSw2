@@ -1,0 +1,109 @@
+@startuml
+
+class Biblioteca {
+  -inventarioLibros: List<Libro>
+  -usuarios: List<Usuario>
+  -prestamosActivos: List<Prestamo>
+  -baseDatos: BaseDatos
+  -interfaz: InterfazUsuario
+  -servicioEmail: ServicioEmail
+  
+  +Biblioteca()
+  +agregarLibro(libro: Libro): void
+  +buscarLibroPorISBN(isbn: String): Libro
+  +registrarUsuario(usuario: Usuario): void
+  +buscarUsuarioPorId(id: int): Usuario
+  +prestarLibro(isbn: String, idUsuario: int): void
+  +devolverLibro(isbn: String): void
+  +generarReporteLibrosMasSolicitados(): void
+  -generarRecibo(prestamo: Prestamo): String
+  -calcularMulta(prestamo: Prestamo): double
+  -buscarPrestamoActivoPorLibro(libro: Libro): Prestamo
+  ....
+  ...& otros muchos métodos!!!
+}
+
+class Libro {
+  -isbn: String
+  -titulo: String
+  -autor: String
+  -disponible: boolean
+  
+  +getIsbn(): String
+  +getTitulo(): String
+  +getAutor(): String
+  +isDisponible(): boolean
+  +setDisponible(disponible: boolean): void
+}
+
+class Usuario {
+  -id: int
+  -nombre: String
+  -email: String
+  -multas: List<Double>
+  
+  +getId(): int
+  +getNombre(): String
+  +getEmail(): String
+  +agregarMulta(monto: double): void
+  +getMultas(): List<Double>
+}
+
+class Prestamo {
+  -libro: Libro
+  -usuario: Usuario
+  -fechaPrestamo: Date
+  -fechaDevolucion: Date
+  
+  +Prestamo(libro: Libro, usuario: Usuario)
+  +getLibro(): Libro
+  +getUsuario(): Usuario
+  +getFechaPrestamo(): Date
+  +getFechaDevolucion(): Date
+  +estaVencido(): boolean
+}
+
+class BaseDatos {
+  +guardarLibro(libro: Libro): void
+  +guardarUsuario(usuario: Usuario): void
+  +registrarPrestamo(prestamo: Prestamo): void
+  +actualizarEstadoLibro(libro: Libro): void
+  +cerrarPrestamo(prestamo: Prestamo): void
+  +obtenerEstadisticasPrestamos(): List<ReporteLibro>
+}
+
+class InterfazUsuario {
+  -biblioteca: Biblioteca
+  
+  +InterfazUsuario(biblioteca: Biblioteca)
+  +mostrarMensaje(mensaje: String): void
+  +mostrarError(error: String): void
+  +mostrarRecibo(recibo: String): void
+  +mostrarReporte(reporte: List<ReporteLibro>): void
+}
+
+class ServicioEmail {
+  +enviarBienvenida(email: String): void
+  +enviarConfirmacionPrestamo(email: String, tituloLibro: String): void
+  +notificarMulta(email: String, monto: double): void
+}
+
+class ReporteLibro {
+  -isbn: String
+  -titulo: String
+  -vecesPrestado: int
+}
+
+' Relaciones
+Biblioteca "1" --> "*" Libro: contiene
+Biblioteca "1" --> "*" Usuario: registra
+Biblioteca "1" --> "*" Prestamo: maneja
+Biblioteca "1" --> "1" BaseDatos: usa
+Biblioteca "1" --> "1" InterfazUsuario: usa
+Biblioteca "1" --> "1" ServicioEmail: usa
+InterfazUsuario "1" --> "1" Biblioteca: referencia
+
+Prestamo "1" --> "1" Libro: involucra
+Prestamo "1" --> "1" Usuario: involucra
+
+@enduml
