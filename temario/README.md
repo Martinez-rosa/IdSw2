@@ -7,7 +7,7 @@
 - [x] [Software & Complejidad](00-introduccion/software.md)  [*oldDiapos*](https://docs.google.com/presentation/d/1N0wtTid8iFAlyR8TNDbCR3FxIkJYvQ_p5kC3pqkkB1c/edit?usp=sharing) / [*oldDiapos*](https://docs.google.com/presentation/d/1K8TusDz7jbpSQkffZdF_-TLDTjfjfxWs-dr9Lf7js80/edit?usp=sharing)
 - [x] [Análisis y Diseño](https://docs.google.com/presentation/d/1fPbUOZ6epnsC0RzccIc-VI7f-WO2lnzxWnnpEryBTVg/edit?usp=sharing)
 
-## Diseño
+## [Diseño](01-diseño/README.md)
 
 > Nivel: línea...
 
@@ -22,20 +22,20 @@
 - Clases por colaboración: *rama mundo-habitacion-baldosa-gato*
 - Clases por transmisión: *rama mundo-habitacion-baldosa-elemento*
 
-## Diseño modular
+## [Diseño modular](02-diseñoModular/README.md)
 
 > Nivel: clases y métodos...
 
-- [ ] Cohesión
-- [ ] Acoplamiento
-- [ ] Granularidad
+- [x] [Cohesión](02-diseñoModular/cohesion.md)
+- [x] [Acoplamiento](02-diseñoModular/acoplamiento.md)
+- [x] [Tamaño](02-diseñoModular/tamaño.md)
 - [ ] Smell Codes
   - Relacionados con la cohesión
     - [x] [Alternative classes with different interfaces - Clases alternativas con distintas interfaces](02-diseñoModular/sc.acdi.md)
     - [x] [Features envy - Envidia de características](02-diseñoModular/sc.fe.md)
     - [x] [Data class - Clase de datos](02-diseñoModular/sc.dc.md)
     - [x] [Divergent Change - Cambios divergentes](02-diseñoModular/sc.dch.md)
-    - [x] [Shotgun Surgery - Cirugía a escopetazos](02-diseñoModular/sc.ss.md)
+    - [x] [Shotgun Surgery - Cirugía con escopeta](02-diseñoModular/sc.ss.md)
     - [x] [Data Clumps - Grupo de datos](02-diseñoModular/sc.dcl.md)
     - [x] [Primitive Obssesion - Obsesión por tipos primitivos](02-diseñoModular/sc.po.md)
     - [x] [Lazy Classes - Clases perezosas](02-diseñoModular/sc.lc.md)
@@ -48,7 +48,7 @@
     - [x] [Large Class - Clase grande](02-diseñoModular/sc.lcl.md)
     - [x] [Temporary Fields - Campos temporales](02-diseñoModular/sc.tf.md)
   - Reflexiones varias
-    - [ ] [Acerca de... getters y setter](02-diseñoModular/gettersSetter.md)
+    - [x] [Acerca de... getters y setter](02-diseñoModular/gettersSetter.md)
 - [ ] Patrón Modelo, Vista, Controlador (Código)
 
 ## Diseño orientado a objetos
