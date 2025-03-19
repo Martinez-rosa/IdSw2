@@ -234,16 +234,9 @@ Además de los cuatro patrones fundamentales, existen varios patrones de diseño
 
 ## ¿Para qué?
 
-La aplicación sistemática de los Patrones de Indirección produce sistemas con las siguientes características positivas:
-
-- **Desacoplamiento**: Componentes que pueden evolucionar independientemente sin afectarse entre sí.
-- **Responsabilidades Enfocadas**: Cada componente asume un conjunto coherente y limitado de responsabilidades.
-- **Sustitución Facilitada**: Implementaciones que pueden ser reemplazadas sin afectar a sus clientes.
-- **Pruebas Simplificadas**: Componentes que pueden probarse aisladamente mediante mocks o stubs.
-
 <div align=center>
 
-| Indirección Efectiva |||| Acoplamiento Directo |
+| Indirección |||| Acoplamiento |
 |-|-:|:-:|:-|-|
 |Código comprensible por partes |**Fluidez**|     *vs*|**Viscosidad**  | Componentes imposibles de entender aisladamente |
 |Cambios localizados sin propagación |**Flexibilidad**|*vs*|**Rigidez**| Cambios en cascada a través del sistema |
