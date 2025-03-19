@@ -28,7 +28,6 @@
 
 ## ¿Cómo?
 
-
 ### Modelo del dominio
 
 Origen de identificadores del problema/solución.
@@ -44,10 +43,5 @@ Origen de identificadores del problema/solución.
 - [Estrategias de clasificación](01-estrategiasClasificacion.md).
   - [Descomposición Funcional](01.1-descomposicionFuncional.md) (antipatrón)
 - [Relaciones entre clases](02-relacionesClases.md).
-- [Composición vs Herencia](04-composicionVsHerencia.md).
-
-### Legibilidad
-
-Destino de identificadores del problema/solución junto con palabras reservadas y signos de puntuación.
-
+  - [Composición vs Herencia](04-composicionVsHerencia.md).
 - [Legibilidad de los artefactos](03-legibilidad.md).
