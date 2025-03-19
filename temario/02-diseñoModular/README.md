@@ -26,7 +26,7 @@ Sin embargo, el problema más crítico y costoso a largo plazo es la **deficient
 
 Estas deficiencias suelen ser el resultado de una **complejidad arbitraria** introducida por decisiones de diseño inadecuadas o por la ausencia de un diseño deliberado.
 
-### ¿Pero, el [diseño](/temario/01-diseño/README.md) no basta?
+### ¿Pero, el [diseño](/temario/01-diseño/README.md#cómo) no basta?
 
 Una creencia errónea pero común es que un diseño inspirado directamente en el modelo del dominio garantiza por sí mismo un código de calidad. Sin embargo, la experiencia demuestra que este enfoque puede resultar en sistemas con graves problemas estructurales:
 
