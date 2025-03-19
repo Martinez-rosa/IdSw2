@@ -11,3 +11,4 @@
   - [ ] [Relaciones entre clases](temario/01-diseño/02-relacionesClases.md)
   - [x] [Legibilidad de los artefactos](temario/01-diseño/03-legibilidad.md)
   - [ ] [Composición vs Herencia](temario/01-diseño/04-composicionVsHerencia.md)
+- [x] [Diseño modular](temario/02-diseñoModular/README.md)
