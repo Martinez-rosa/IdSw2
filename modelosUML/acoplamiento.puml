@@ -1,0 +1,31 @@
+@startuml
+hide circle
+hide stereotype
+
+skinparam class {
+    BorderThickness 3
+    FontSize 25
+    FontName courier
+    
+}
+
+class "  X  " as X
+class "Base de X" as Base #line:DC143C
+class "Todo de X" as Todo #line:green
+class "Usa X" as UsadoPor #line:green
+class "Asociado a X" as AsociadoDe #line:green
+class "Asociada de X" as AsociadoA #line:DC143C
+class "Descendiente\nde X" as Descendiente #line:green
+class "Parte de X" as Parte #line:DC143C
+class "Usada por X" as UsadoA #line:DC143C
+
+X <|-d-- Descendiente #line:green;line.bold
+X *-d--> Parte #line:DC143C;line.bold
+X .d..> UsadoA #line:DC143C;line.bold
+X -r--> AsociadoA #line:DC143C;line.bold
+UsadoPor .d..> X #line:green;line.bold
+AsociadoDe -r--> X #line:green;line.bold
+Base <|-d-- X #line:DC143C;line.bold
+Todo *-d--> X #line:green;line.bold
+
+@enduml
