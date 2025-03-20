@@ -71,49 +71,15 @@ Este enfoque resulta especialmente apropiado cuando:
 
 En el diseño de software, pueden identificarse varios tipos de jerarquías:
 
-#### De composición
+#### De composición/clasificación/dependencia
 
-Representa relaciones "tiene-un" o "parte-de".
+<div align=center>
 
-   ```java
-   public class Coche {
-       private Motor motor;
-       private List<Rueda> ruedas;
-       private Chasis chasis;
-       // ...
-   }
-   ```
+|Composición|Clasificación|Dependencia|
+|:-:|:-:|:-:|
+|"tiene un" / "es parte de"|"es un"|"usa"
 
-#### De clasificación
-
-Representa relaciones "es-un" a través de herencia.
-
-   ```java
-   public abstract class Vehículo {
-       // Atributos y métodos comunes
-   }
-   
-   public class Coche extends Vehículo {
-       // Especializaciones
-   }
-   
-   public class Motocicleta extends Vehículo {
-       // Especializaciones
-   }
-   ```
-
-#### De dependencias
-
-Representa relaciones "usa" entre componentes.
-
-   ```java
-   public class ServicioCliente {
-       private RepositorioCliente repositorio;
-       private ServicioNotificacion notificacion;
-       
-       // Métodos que usan estos servicios
-   }
-   ```
+</div>
 
 #### De módulos
 
@@ -231,7 +197,7 @@ Cada capa:
 
 - Proporciona servicios a la capa superior
 - Puede utilizar servicios de la capa inferior
-- Idealmente, no conoce las capas por encima de ella
+- ***Idealmente***, no conoce las capas por encima de ella
 
 ```java
 // Capa de dominio
@@ -296,9 +262,11 @@ Los componentes más estables deben estar en la parte inferior de la jerarquía,
     Componentes Estables (Librerías)
 ```
 
-#### Principio de Abstracciones Estables (SAP)
+#### Principio de abstracciones estables (SAP)
 
 Los componentes estables deben ser más abstractos para permitir extensibilidad sin modificación.
+
+> [Ejemplo SAP / SDP](ejemplo/SDPySAP.md)
 
 ### Herramientas de visualización y análisis
 
@@ -364,7 +332,7 @@ public class Cliente {
 }
 ```
 
-#### Inversión de Dependencias
+#### Inversión de dependencias
 
 Usar interfaces para invertir dependencias entre capas:
 
