@@ -6,7 +6,6 @@ Ocurre cuando dos clases están excesivamente entrelazadas, es decir, cuando una
 
 ### Problema
 
-
 ```java
 
 public class Customer {
@@ -19,7 +18,7 @@ public class Customer {
 
     public void addOrder(Order order) {
         orders.add(order);
-        order.customer = this;  // Inappropriate intimacy
+        order.customer = this;
     }
 }
 
@@ -33,20 +32,18 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-        customer.orders.add(this);  // Inappropriate intimacy
+        customer.orders.add(this);
     }
 }
 
 
 ```
 
-En este ejemplo, las clases Order y Customer están demasiado acopladas. Order tiene acceso directo y puede modificar la lista de pedidos (orders) de Customer y viceversa. Esto no solo es un problema de encapsulación, sino que también hace que el código sea difícil de entender, de mantener y aumenta el riesgo de errores, como modificaciones no controladas a las listas internas de objetos.
+En este ejemplo, las clases Order y Customer están demasiado acopladas. Order tiene acceso directo y puede modificar la lista de pedidos (orders) de Customer y viceversa.
 
-
-
+Esto no solo es un problema de encapsulación, sino que también hace que el código sea difícil de entender, de mantener y aumenta el riesgo de errores, como modificaciones no controladas a las listas internas de objetos.
 
 ### Solución propuesta
-
 
 ```java
 

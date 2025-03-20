@@ -182,13 +182,13 @@ Para aplicar correctamente el principio de bajo acoplamiento en el diseño de so
 
 ### Identificar "code smells" que señalan problemas de acoplamiento
 
-- **Intimidad inapropiada**: Cuando una clase usa excesivamente los detalles internos de otra clase.
-- **Cadena de mensajes**: Series de llamadas del tipo `a.getB().getC().getD()`.
-- **Librería incompleta**: Cuando se añaden métodos a clases para compensar limitaciones en bibliotecas existentes.
-- **Envidia de características**: Un método que parece más interesado en una clase diferente a la que pertenece.
-- **Intermediario**: Una clase que simplemente delega a otra.
-- **Herencia rechazada**: Subclases que no usan o sobrescriben gran parte de lo que heredan.
-- **Principios de paquetes quebrados**: Paquetes con dependencias cíclicas o excesivas.
+- **[Intimidad inapropiada](sc.ii.md)**: Cuando una clase usa excesivamente los detalles internos de otra clase.
+- **[Librería incompleta](sc.ilc.md)**: Cuando se añaden métodos a clases para compensar limitaciones en bibliotecas existentes.
+- **[Envidia de características](sc.fe.md)**: Un método que parece más interesado en una clase diferente a la que pertenece.
+- **[Intermediario](sc.mm.md)**: Una clase que simplemente delega a otra.
+- **[Principios de paquetes quebrados](sc.bpp.md)**: Paquetes con dependencias cíclicas o excesivas.
+- **[Cadena de mensajes](sc.mc.md)** [***E·Ext***](https://www.metridev.com/metrics/message-chain-code-smells-how-to-identify-and-fix-them/): Series de llamadas del tipo `a.getB().getC().getD()`.
+- **Herencia rechazada** [***E·Ext***](https://swiftlynomad.medium.com/code-smells-object-orientation-abusers-refused-bequest-4f1f23b91acc): Subclases que no usan o sobrescriben gran parte de lo que heredan.
 
 ### Técnicas de diseño & refactorización
 

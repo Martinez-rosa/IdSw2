@@ -32,6 +32,41 @@ public class NetworkConnector {
 
 La clase ThirdPartyNetworkHandler de la biblioteca externa maneja las conexiones de red, pero no proporciona métodos para configurar capas de seguridad específicas (como TLS o SSL) que son críticas para la aplicación. Dado que no se puede modificar directamente, se necesita encontrar una manera de extender o adaptar esta funcionalidad sin alterar la biblioteca.
 
+### Solución inadecuada
+
+Heredar y sobrecargar
+
+```java
+public class EnhancedNetworkHandler extends ThirdPartyNetworkHandler {
+    
+    public void establishSecureConnection(String url, String protocol) {
+        if (protocol.equalsIgnoreCase("TLS")) {
+            setupTLS();
+        }
+        // Llamamos al método padre
+        super.establishConnection(url);
+    }
+    
+    private void setupTLS() {
+        System.out.println("TLS security context set up.");
+    }
+    
+    // Añadimos más métodos que la biblioteca no tiene
+    public boolean checkConnectionStatus() {
+        System.out.println("Checking connection status...");
+        return true;
+    }
+}
+```
+
+¿Por qué es un problema?
+
+1. Si la biblioteca cambia en el futuro, nuestra clase heredada podría romperse
+1. Estamos acoplados fuertemente a la implementación de la biblioteca
+1. Difícil de testear por la herencia directa
+
+Además, si la clase ThirdPartyNetworkHandler fuera final, esta solución no sería posible
+
 ### Solución propuesta
 
 Una solución efectiva para tratar con clases de biblioteca incompletas es implementar un patrón de diseño que permita extender su funcionalidad indirectamente. Uno de estos patrones es el Adapter Pattern, que permite envolver la clase de la biblioteca con una nueva clase que proporciona la funcionalidad adicional requerida.
