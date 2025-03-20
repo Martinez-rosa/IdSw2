@@ -126,13 +126,15 @@ La verdadera potencia del Diseño Modular surge cuando estos tres principios se 
 
 Para comprender los fundamentos del diseño modular, se recomienda:
 
+0. **Fundamentos**
+    - **[Modularidad](modularidad.md)** y **[jerarquización](jerarquizacion.md)**: Para estructurar sistemas complejos en niveles comprensibles.
+
 1. **Profundizar en los principios fundamentales**:
    - **[Tamaño](tamaño.md)**: Para dominar el arte de dimensionar adecuadamente cada elemento
    - **[Cohesión](cohesion.md)**: Para entender cómo crear componentes con responsabilidades enfocadas
    - **[Acoplamiento](acoplamiento.md)**: Para aprender a minimizar dependencias entre componentes
 
 2. **Explorar las técnicas complementarias**:
-   - **[Jerarquización](jerarquizacion.md)**: Para estructurar sistemas complejos en niveles comprensibles
    - **[Abstracción de interfaz](abstraccionInterfaz.md)**: Para definir contratos claros entre componentes
    - **[Diseño por contrato](diseñoContrato.md)**: Para formalizar precondiciones, postcondiciones e invariantes
    - **[Patrones de indirección](patronesIndireccion.md)**: Para implementar mecanismos específicos de desacoplamiento
