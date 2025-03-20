@@ -35,14 +35,8 @@ Se pueden distinguir diferentes categorías de acoplamiento:
 
 #### Según la forma
 
-1. **Directo**: Se establece cuando una clase hace referencia explícita a otra. Puede darse a través de:
+1. **Directo**: Se establece cuando una clase hace referencia explícita a otra. Puede darse a través de<br><br>- Atributos de la clase<br>- Parámetros en métodos<br>- Variables locales<br>- Tipos de retorno<br>- Herencia
 
-   - Atributos de la clase
-   - Parámetros en métodos
-   - Variables locales
-   - Tipos de retorno
-   - Herencia
-   
    ```java
    // Acoplamiento directo por atributo
    public class Pedido {
