@@ -100,8 +100,23 @@ Como expresa elocuentemente la analogía de la construcción de mosaicos:
 
 ## ¿Cómo?
 
-La implementación efectiva del Diseño Modular requiere profundizar en sus tres principios fundamentales:
+### Fundamentos
 
+- **[Modularidad](modularidad.md)** y **[jerarquización](jerarquizacion.md)**: Para estructurar sistemas complejos en niveles comprensibles.
+
+### Principios fundamentales
+
+- **[Tamaño](tamaño.md)**: Para dominar el arte de dimensionar adecuadamente cada elemento
+- **[Cohesión](cohesion.md)**: Para entender cómo crear componentes con responsabilidades enfocadas
+- **[Acoplamiento](acoplamiento.md)**: Para aprender a minimizar dependencias entre componentes
+
+### Técnicas complementarias
+
+- **[Abstracción de interfaz](abstraccionInterfaz.md)**: Para definir contratos claros entre componentes
+- **[Diseño por contrato](diseñoContrato.md)**: Para formalizar precondiciones, postcondiciones e invariantes
+- **[Patrones de indirección](patronesIndireccion.md)**: Para implementar mecanismos específicos de desacoplamiento
+
+### Resumen
 
 |Tamaño|Cohesión|Acoplamiento|
 |-|-|-|
@@ -124,23 +139,7 @@ La verdadera potencia del Diseño Modular surge cuando estos tres principios se 
 
 ## ¿Y ahora qué?
 
-Para comprender los fundamentos del diseño modular, se recomienda:
-
-0. **Fundamentos**
-    - **[Modularidad](modularidad.md)** y **[jerarquización](jerarquizacion.md)**: Para estructurar sistemas complejos en niveles comprensibles.
-
-1. **Profundizar en los principios fundamentales**:
-   - **[Tamaño](tamaño.md)**: Para dominar el arte de dimensionar adecuadamente cada elemento
-   - **[Cohesión](cohesion.md)**: Para entender cómo crear componentes con responsabilidades enfocadas
-   - **[Acoplamiento](acoplamiento.md)**: Para aprender a minimizar dependencias entre componentes
-
-2. **Explorar las técnicas complementarias**:
-   - **[Abstracción de interfaz](abstraccionInterfaz.md)**: Para definir contratos claros entre componentes
-   - **[Diseño por contrato](diseñoContrato.md)**: Para formalizar precondiciones, postcondiciones e invariantes
-   - **[Patrones de indirección](patronesIndireccion.md)**: Para implementar mecanismos específicos de desacoplamiento
-
-3. **Aplicar estos principios y técnicas** de manera práctica en proyectos reales, utilizando refactorizaciones sistemáticas para mejorar diseños existentes.
-
-4. **Integrar herramientas de análisis** que permitan evaluar objetivamente la calidad del diseño según estos principios.
+1. **Aplicar estos principios y técnicas** de manera práctica en proyectos reales, utilizando refactorizaciones sistemáticas para mejorar diseños existentes.
+2. **Integrar herramientas de análisis** que permitan evaluar objetivamente la calidad del diseño según estos principios.
 
 > *El dominio del Diseño Modular no es un destino final sino un viaje continuo hacia la excelencia en el desarrollo de software, cuyos beneficios se manifestarán en cada fase del ciclo de vida de los sistemas construidos bajo sus principios.*
