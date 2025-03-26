@@ -170,16 +170,16 @@ Para aplicar correctamente el principio de cohesión en el diseño de software, 
 
 ### Identificar "code smells" que señalan problemas de cohesión
 
-- **Clases alternativas con distintas interfaces**: Clases que realizan funcionalidades similares pero con APIs diferentes, creando inconsistencia conceptual.
-- **Envidia de características**: Cuando un método parece más interesado en los datos o comportamientos de otra clase que en los propios.
-- **Clase de datos**: Clases con solo atributos y getters/setters sin comportamiento real que encapsule reglas de negocio.
-- **Cambios divergentes**: Cuando una clase cambia por múltiples razones no relacionadas, indicando responsabilidades mezcladas.
-- **Cirugía con escopeta**: Cuando un solo cambio conceptual requiere modificar muchas clases distintas, señalando responsabilidades fragmentadas.
-- **Grupo de datos**: Los mismos grupos de campos aparecen juntos en múltiples lugares, sugiriendo que deberían ser su propia clase.
-- **Obsesión por tipos primitivos**: Uso excesivo de tipos primitivos en lugar de pequeñas clases de dominio con alta cohesión.
-- **Clases perezosas**: Clases que hacen demasiado poco para justificar su existencia, fragmentando conceptos que deberían estar juntos.
-- **Métodos largos**: Métodos que realizan múltiples operaciones, violando la cohesión a nivel de método.
-- **Clases grandes**: Clases con demasiadas responsabilidades que abarcan conceptos distintos.
+- **[Clases alternativas con distintas interfaces](sc.acdi.md)**: Clases que realizan funcionalidades similares pero con APIs diferentes, creando inconsistencia conceptual.
+- **[Envidia de características](sc.fe.md)**: Cuando un método parece más interesado en los datos o comportamientos de otra clase que en los propios.
+- **[Clase de datos](sc.dc.md)**: Clases con solo atributos y getters/setters sin comportamiento real que encapsule reglas de negocio.
+- **[Cambios divergentes](sc.dch.md)**: Cuando una clase cambia por múltiples razones no relacionadas, indicando responsabilidades mezcladas.
+- **[Cirugía con escopeta](sc.ss.md)**: Cuando un solo cambio conceptual requiere modificar muchas clases distintas, señalando responsabilidades fragmentadas.
+- **[Grupo de datos](sc.dc.md)**: Los mismos grupos de campos aparecen juntos en múltiples lugares, sugiriendo que deberían ser su propia clase.
+- **[Obsesión por tipos primitivos](sc.po.md)**: Uso excesivo de tipos primitivos en lugar de pequeñas clases de dominio con alta cohesión.
+- **[Clases perezosas](sc.lc.md)**: Clases que hacen demasiado poco para justificar su existencia, fragmentando conceptos que deberían estar juntos.
+- **[Métodos largos](sc.lm.md)**: Métodos que realizan múltiples operaciones, violando la cohesión a nivel de método.
+- **[Clases grandes](sc.lcl.md)**: Clases con demasiadas responsabilidades que abarcan conceptos distintos.
 
 ### Técnicas de diseño & refactorización
 
