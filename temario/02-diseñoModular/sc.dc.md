@@ -1,4 +1,4 @@
-# Features envy
+# Data classes
 
 Se refiere a clases que únicamente sirven para almacenar datos y no tienen funcionalidades significativas (métodos) propias, más allá de simples getters y setters. Estas clases son problemáticas porque tienden a exponer sus detalles internos (sus datos), lo cual viola el principio de encapsulación y puede llevar a un diseño donde la lógica que maneja estos datos se dispersa por otras clases del sistema.
 
