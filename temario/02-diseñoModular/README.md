@@ -51,9 +51,13 @@ Este enfoque tiene sus raíces en los trabajos pioneros de:
 
 El Diseño Modular se fundamenta en tres criterios fundamentales que debe cumplir todo módulo (sea método, clase o paquete):
 
-1. **Alta cohesión**: Los elementos dentro de un módulo deben estar fuertemente relacionados entre sí y contribuir a un propósito unificado.
-2. **Bajo acoplamiento**: Las dependencias entre módulos deben minimizarse para reducir el impacto de los cambios y facilitar la evolución independiente.
-3. **Tamaño adecuado**: Cada componente debe tener dimensiones apropiadas para su nivel de abstracción, facilitando su comprensión y mantenimiento.
+<div align=center>
+
+|Alta cohesión|Bajo acoplamiento|Tamaño adecuado|
+|-|-|-|
+|Los elementos dentro de un módulo deben estar fuertemente relacionados entre sí y contribuir a un propósito unificado.|Las dependencias entre módulos deben minimizarse para reducir el impacto de los cambios y facilitar la evolución independiente.|Cada componente debe tener dimensiones apropiadas para su nivel de abstracción, facilitando su comprensión y mantenimiento.
+
+</div>
 
 Estos tres principios, aplicados de manera consistente, constituyen la base para crear software que sea simultáneamente comprensible, modificable, testeable y reutilizable.
 
