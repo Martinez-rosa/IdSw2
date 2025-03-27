@@ -22,7 +22,7 @@
 - Clases por colaboración: *rama mundo-habitacion-baldosa-gato*
 - Clases por transmisión: *rama mundo-habitacion-baldosa-elemento*
 
-## [Diseño modular](02-diseñoModular/README.md)
+## [Diseño modular](02-diseñoModular/README.md#Cómo)
 
 > Nivel: clases y métodos...
 
