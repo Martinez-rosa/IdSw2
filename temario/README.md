@@ -30,7 +30,7 @@
 - [x] [Cohesión](02-diseñoModular/cohesion.md)
 - [x] [Acoplamiento](02-diseñoModular/acoplamiento.md)
 - [x] [Tamaño](02-diseñoModular/tamaño.md)
-- [ ] Smell Codes
+- [x] Smell Codes
   |Cohesión|Acoplamiento|Tamaño|
   |-|-|-|
   |[Alternative classes with different interfaces - Clases alternativas con distintas interfaces](02-diseñoModular/sc.acdi.md)|[Inappropriate Intimacy - Inapropiada intimidad](02-diseñoModular/sc.ii.md)|[Long Parameter List - Listas de parámetros larga](02-diseñoModular/sc.lpl.md)|
@@ -42,31 +42,31 @@
   |[Primitive Obssesion - Obsesión por tipos primitivos](02-diseñoModular/sc.po.md)
   |[Lazy Classes - Clases perezosas](02-diseñoModular/sc.lc.md)
   |[Acerca de... getters y setter](02-diseñoModular/gettersSetter.md)
-
-- [ ] Patrón Modelo, Vista, Controlador (Código)
+- [ ] Técnicas
+  - [ ] Abstracción de interfaz
+  - [ ] Diseño por contrato
+  - [ ] Patrones de indirección
 
 ## Diseño orientado a objetos
 
 > Nivel: Jerarquías de clasificación
 
-- [x] S [Principio de responsabilidad única](03-diseñoOO/SOLID_S.md)
-- [x] O [Principio de abierto/cerrado](03-diseñoOO/SOLID_O.md)
-- [x] L [Principio de Sustitución de Liskov](03-diseñoOO/SOLID_L.md)
-- [x] I [Principio de segregación de interfaces](03-diseñoOO/SOLID_I.md)
-- [x] D [Principio de Inversión de Dependencias](03-diseñoOO/SOLID_D.md)
-- [x] [Demeter](03-diseñoOO/demeter.md)
-- [x] [Inversión de Control](casos/IoC.md)
-- [x] [Inyección de Dependencias](casos/inyeccionDependenciasCaso.md)
+- [ ] ***S*** Principio de responsabilidad única
+- [ ] ***O*** Principio de abierto/cerrado
+- [ ] ***L*** Principio de Sustitución de Liskov
+- [ ] ***I*** Principio de segregación de interfaces
+- [ ] ***D*** Principio de Inversión de Dependencias
+- [ ] Demeter
+- [ ] Inversión de Control
+- [ ] Inyección de Dependencias
 
-## Más cosas por ver...
+## Temario++
 
 ### Patrones de diseño
 
 ### Arquitectura de software
 
 ### Arquitectura MV*
-
-## Temario++
 
 - [x] Artículos varios recopilados en la [carpeta de documentos](/documentos/README.md).
 
