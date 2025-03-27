@@ -99,13 +99,14 @@ Para aplicar correctamente el principio de tamaño en el diseño de software, de
 
 ### Identificar "code smells" relacionados con tamaño excesivo
 
-- **Método largo**: Métodos con demasiadas líneas de código.
-- **Lista de parámetros larga**: Métodos con demasiados parámetros.
-- **Clase grande**: Clases con demasiados atributos y/o métodos.
+- **[Método largo](sc.lm.md)**: Métodos con demasiadas líneas de código.
+- **[Lista de parámetros larga](sc.lpl.md)**: Métodos con demasiados parámetros.
+- **[Clase grande](sc.lc.md)**: Clases con demasiados atributos y/o métodos.
+- **[Campos temporales](sc.tf.md)**: Campos (atributos) cuya utilidad no es constante a lo largo del ciclo de vida de los objetos.
+- **[Complejidad ciclomática alta](https://es.wikipedia.org/wiki/Complejidad_ciclom%C3%A1tica)** *ext*: Muchos caminos de ejecución en un método.
 - **Comentarios extensos**: Necesidad de explicaciones largas suele indicar complejidad excesiva.
 - **Anidación profunda**: Estructuras condicionales o bucles excesivamente anidados.
-- **Declaraciones switch gGrandes**: Sentencias switch con muchos casos.
-- **Complejidad ciclomática alta**: Muchos caminos de ejecución en un método.
+- **Declaraciones switch grandes**: Sentencias switch con muchos casos.
 
 ### Técnicas de refactorización
 
