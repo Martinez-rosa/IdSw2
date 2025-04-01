@@ -206,32 +206,55 @@ El primer paso es detectar síntomas de interfaces mal diseñadas:
 
 Los nombres de interfaces y métodos deben comunicar claramente su propósito:
 
+<div align=center>
+<table>
+<tr>
+<th>Poco claro</th><th>Mejor</th>
+</tr>
+<tr>
+<td>
+    
 ```java
-// Poco claro
 interface IProcessor {
     Object process(Object input);
 }
+```
+</td><td>
 
-// Claro y semánticamente rico
+```java
 interface TransformadorTexto {
     String transformar(String entrada);
 }
-```
+```   
+</td>
+</tr>
+</table>
+</div>
 
 #### Consistencia en patrones
 
 Mantener convenciones coherentes a través de todas las interfaces:
 
+
+<div align=center>
+<table>
+<tr>
+<th>Inconsistente</th><th>Consistente</th>
+</tr>
+<tr>
+<td>
+
 ```java
-// Inconsistente
 interface RepositorioCliente {
     Cliente buscarPorId(String id);
     List<Cliente> getByName(String name);
     void save(Cliente cliente);
     void deleteCustomer(String id);
 }
+```
+</td><td>
 
-// Consistente
+```java
 interface RepositorioCliente {
     Cliente buscarPorId(String id);
     List<Cliente> buscarPorNombre(String nombre);
@@ -239,6 +262,10 @@ interface RepositorioCliente {
     void eliminar(String id);
 }
 ```
+</td>
+</tr>
+</table>
+</div>
 
 #### Granularidad adecuada
 
