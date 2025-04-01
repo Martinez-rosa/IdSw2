@@ -16,6 +16,7 @@ Un síntoma claro de esta problemática es el "code smell" de "[Clases alternati
 
 Cuando la abstracción de interfaz se realiza deficientemente, el código manifiesta comportamientos como:
 
+<div align=center>
 <table>
 <tr>
 <th>Componente 1: Gestión de usuarios</th><th>Componente 2: Sistema similar para clientes</th>
@@ -43,6 +44,7 @@ public class SistemaClientes {
 </td>
 </tr>
 </table>
+</div>
 
 Estos componentes realizan operaciones conceptualmente idénticas, pero con interfaces tan diferentes que complican su uso, comprensión y mantenimiento.
 
@@ -56,6 +58,8 @@ La Abstracción de Interfaz es un principio de diseño que define cómo los comp
 
 Este principio formaliza la separación entre el "qué" (la funcionalidad proporcionada) y el "cómo" (los detalles de implementación), estableciendo los fundamentos para un acoplamiento bajo y una evolución controlada.
 
+<div align=center>
+
 |Principio del menor compromiso|Principio de la menor sorpresa|
 |-|-|
 |Formulado por Abelson y Sussman, este principio establece que la interfaz de un objeto debe proporcionar su comportamiento esencial, y nada más.|Este principio establece que una abstracción debe capturar todo el comportamiento de un objeto, ni más ni menos, sin ofrecer sorpresas o efectos secundarios.|
@@ -65,25 +69,40 @@ Este principio formaliza la separación entre el "qué" (la funcionalidad propor
 |- Evitar detalles de implementación|- Los comportamientos similares deben seguir patrones consistentes|
 |- Minimizar las restricciones sobre los clientes|- Las excepciones al comportamiento común deben estar claramente señaladas|
 
+</div>
+
 ### Características de interfaces bien diseñadas
 
 Una interfaz de calidad debe ser:
 
 1. **Suficiente**: Debe capturar suficientes características de la abstracción para permitir una interacción significativa y eficiente. De lo contrario, el componente sería inútil.
 
-   ```java
-   // Interfaz insuficiente
-   public interface Coleccion {
-       void agregar(Object elemento);
-       // Falta método para recuperar elementos
-   }
-   
-   // Interfaz suficiente
-   public interface Coleccion {
-       void agregar(Object elemento);
-       Object obtener(int indice);
-   }
-   ```
+<div align=center>
+<table>
+<tr>
+<th>Insuficiente</th><th>Suficiente</th>
+</tr>
+<tr>
+<td>
+
+```java
+public interface Coleccion {
+    void agregar(Object elemento);
+    // Falta método para recuperar elementos
+}
+```
+</td><td>
+
+```java
+public interface Coleccion {
+    void agregar(Object elemento);
+    Object obtener(int indice);
+}
+```
+</td>
+</tr>
+</table>
+</div>
 
 1. **Completa**: Debe cubrir todos los aspectos significativos de la abstracción, siendo lo suficientemente general como para ser comúnmente utilizable por cualquier cliente.
 
