@@ -37,7 +37,7 @@ public class EmailSender implements MessageSender {
         sendEmailMessage(to, subject, body);
     }
 
-    public void sendEmailMessage(String to, String subject, String body) {
+    private void sendEmailMessage(String to, String subject, String body) {
         System.out.println("Sending email to: " + to);
         System.out.println("Subject: " + subject);
         System.out.println("Body: " + body);
@@ -49,7 +49,7 @@ public class SMSNotifier implements MessageSender {
         sendSMS(phoneNumber, messageContent);
     }
 
-    public void sendSMS(String phoneNumber, String messageContent) {
+    private void sendSMS(String phoneNumber, String messageContent) {
         System.out.println("Sending SMS to: " + phoneNumber);
         System.out.println("Message: " + messageContent);
     }
