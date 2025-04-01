@@ -204,7 +204,7 @@ El primer paso es detectar síntomas de interfaces mal diseñadas:
 
 #### Nombrado semántico
 
-Los nombres de interfaces y métodos deben comunicar claramente su propósito:
+Los nombres de interfaces y métodos deben comunicar claramente su propósito.
 
 <div align=center>
 <table>
@@ -233,7 +233,7 @@ interface TransformadorTexto {
 
 #### Consistencia en patrones
 
-Mantener convenciones coherentes a través de todas las interfaces:
+Mantener convenciones coherentes a través de todas las interfaces.
 
 
 <div align=center>
@@ -269,7 +269,15 @@ interface RepositorioCliente {
 
 #### Granularidad adecuada
 
-Diseñar interfaces con el nivel adecuado de detalle:
+Diseñar las interfaces con el nivel adecuado de detalle.
+
+<div align=center>
+<table>
+<tr>
+<th>Demasiado</th><th>Mejor</th>
+</tr>
+<tr>
+<td>
 
 ```java
 // Demasiado granular
@@ -284,14 +292,21 @@ interface GestorSesiones {
 interface ValidadorTokens {
     boolean validarToken(String token);
 }
+```
+</td><td>
 
-// Granularidad adecuada
+
+```java
 interface ServicioAutenticacion {
     ResultadoAutenticacion autenticar(String usuario, String contraseña);
     boolean validarSesion(String token);
     void cerrarSesion(String token);
 }
 ```
+</td>
+</tr>
+</table>
+</div>
 
 #### Segregar las interfaces
 
