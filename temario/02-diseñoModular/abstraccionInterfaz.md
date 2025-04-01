@@ -280,9 +280,9 @@ Diseñar las interfaces con el nivel adecuado de detalle.
 <td>
 
 ```java
-// Demasiado granular
 interface Autenticador {
-    boolean validarCredenciales(String usuario, String contraseña);
+    boolean validarCredenciales(String usuario,
+                                String contraseña);
 }
 
 interface GestorSesiones {
@@ -298,7 +298,8 @@ interface ValidadorTokens {
 
 ```java
 interface ServicioAutenticacion {
-    ResultadoAutenticacion autenticar(String usuario, String contraseña);
+    ResultadoAutenticacion autenticar(String usuario,
+                                      String contraseña);
     boolean validarSesion(String token);
     void cerrarSesion(String token);
 }
