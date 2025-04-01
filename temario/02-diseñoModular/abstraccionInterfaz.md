@@ -12,25 +12,37 @@ Estas deficiencias en la comunicación entre componentes se manifiestan en diver
 - **Duplicación funcional**: Comportamientos similares implementados de manera diferente por distintos componentes, generando inconsistencias y confusión.
 - **Falta de evolución controlada**: Sin una abstracción adecuada, las interfaces cambian frecuentemente, afectando a todos los componentes dependientes.
 
-Un síntoma claro de esta problemática es el "code smell" de "Clases alternativas con interfaces diferentes", donde diferentes componentes proporcionan funcionalidades similares pero con interfaces incompatibles, complicando innecesariamente el sistema.
+Un síntoma claro de esta problemática es el "code smell" de "[Clases alternativas con interfaces diferentes](sc.acdi.md)", donde diferentes componentes proporcionan funcionalidades similares pero con interfaces incompatibles, complicando innecesariamente el sistema.
 
 Cuando la abstracción de interfaz se realiza deficientemente, el código manifiesta comportamientos como:
 
+<table>
+<tr>
+<th>Componente 1: Gestión de usuarios</th><th>Componente 2: Sistema similar para clientes</th>
+</tr>
+<tr>
+<td>
+
 ```java
-// Componente 1: Gestión de usuarios
 public class GestorUsuarios {
     public boolean agregarUsuario(String nombre, int edad, String email) { /*...*/ }
     public Usuario buscarUsuarioPorNombre(String nombre) { /*...*/ }
     public void eliminarUsuario(int id) { /*...*/ }
 }
+```
+</td>
+<td>
 
-// Componente 2: Sistema similar para clientes
+```java
 public class SistemaClientes {
     public int darDeAltaCliente(Cliente datos) { /*...*/ }
     public Cliente obtenerCliente(String nombreCompleto) { /*...*/ }
     public boolean borrarClientePorIdentificador(int idCliente) { /*...*/ }
 }
 ```
+</td>
+</tr>
+</table>
 
 Estos componentes realizan operaciones conceptualmente idénticas, pero con interfaces tan diferentes que complican su uso, comprensión y mantenimiento.
 
@@ -38,35 +50,20 @@ Estos componentes realizan operaciones conceptualmente idénticas, pero con inte
 
 La Abstracción de Interfaz es un principio de diseño que define cómo los componentes exponen su funcionalidad y se comunican entre sí, proporcionando contratos claros, consistentes y adecuadamente abstraídos.
 
-> "Una interfaz bien diseñada no sólo describe lo que un sistema hace, sino que revela su intención, ocultando detalles no esenciales."
+> *Una interfaz bien diseñada no sólo describe lo que un sistema hace, sino que revela su intención, ocultando detalles no esenciales.*
 >
 > — Kent Beck
 
 Este principio formaliza la separación entre el "qué" (la funcionalidad proporcionada) y el "cómo" (los detalles de implementación), estableciendo los fundamentos para un acoplamiento bajo y una evolución controlada.
 
-### Principio del menor compromiso
-
-Formulado por Abelson y Sussman, este principio establece que la interfaz de un objeto debe proporcionar su comportamiento esencial, y nada más:
-
-> "La interfaz de un módulo debería capturar la mínima cantidad de suposiciones que los clientes necesitan para usarlo correctamente."
-
-Esto implica que una interfaz debe:
-
-- Incluir solo las operaciones necesarias
-- Evitar detalles de implementación
-- Minimizar las restricciones sobre los clientes
-
-### Principio de la menor sorpresa
-
-Este principio establece que una abstracción debe capturar todo el comportamiento de un objeto, ni más ni menos, sin ofrecer sorpresas o efectos secundarios:
-
-> "Los sistemas deberían comportarse de manera que los usuarios no se sorprendan con comportamientos inesperados."
-
-En términos prácticos:
-
-- Las funciones deben hacer lo que sus nombres sugieren
-- Los comportamientos similares deben seguir patrones consistentes
-- Las excepciones al comportamiento común deben estar claramente señaladas
+|Principio del menor compromiso|Principio de la menor sorpresa|
+|-|-|
+|Formulado por Abelson y Sussman, este principio establece que la interfaz de un objeto debe proporcionar su comportamiento esencial, y nada más.|Este principio establece que una abstracción debe capturar todo el comportamiento de un objeto, ni más ni menos, sin ofrecer sorpresas o efectos secundarios.|
+|*La interfaz de un módulo debería capturar la mínima cantidad de suposiciones que los clientes necesitan para usarlo correctamente.*|*Los sistemas deberían comportarse de manera que los usuarios no se sorprendan con comportamientos inesperados.*|
+|Esto implica que una interfaz debe:|En términos prácticos:|
+|- Incluir solo las operaciones necesarias|- Las funciones deben hacer lo que sus nombres sugieren|
+|- Evitar detalles de implementación|- Los comportamientos similares deben seguir patrones consistentes|
+|- Minimizar las restricciones sobre los clientes|- Las excepciones al comportamiento común deben estar claramente señaladas|
 
 ### Características de interfaces bien diseñadas
 
