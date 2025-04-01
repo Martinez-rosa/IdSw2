@@ -73,9 +73,9 @@ Este principio formaliza la separación entre el "qué" (la funcionalidad propor
 
 ### Características de interfaces bien diseñadas
 
-Una interfaz de calidad debe ser:
+#### Suficiente
 
-1. **Suficiente**: Debe capturar suficientes características de la abstracción para permitir una interacción significativa y eficiente. De lo contrario, el componente sería inútil.
+Debe capturar suficientes características de la abstracción para permitir una interacción significativa y eficiente. De lo contrario, el componente sería inútil.
 
 <div align=center>
 <table>
@@ -104,8 +104,9 @@ public interface Coleccion {
 </table>
 </div>
 
-1. **Completa**: Debe cubrir todos los aspectos significativos de la abstracción, siendo lo suficientemente general como para ser comúnmente utilizable por cualquier cliente.
+#### Completa
 
+Debe cubrir todos los aspectos significativos de la abstracción, siendo lo suficientemente general como para ser comúnmente utilizable por cualquier cliente.
 
 <div align=center>
 <table>
@@ -131,10 +132,9 @@ public interface Coleccion<T> {
 </table>
 </div>
 
+#### Primitiva
 
-
-1. **Primitiva**: Las operaciones deben ser fundamentales e indiscutiblemente necesarias. Una operación es primitiva si solo puede implementarse a través del acceso a la representación subyacente o si, aunque podría implementarse sobre otras operaciones primitivas, hacerlo sería significativamente menos eficiente.
-
+Las operaciones deben ser fundamentales e indiscutiblemente necesarias. Una operación es primitiva si solo puede implementarse a través del acceso a la representación subyacente o si, aunque podría implementarse sobre otras operaciones primitivas, hacerlo sería significativamente menos eficiente.
 
 <div align=center>
 <table>
@@ -161,44 +161,7 @@ public interface Coleccion<T> {
 </table>
 </div>
 
-
-
-
-### Tipos de interfaces en el diseño de software
-
-En función del contexto y nivel de abstracción, podemos identificar diferentes tipos de interfaces:
-
-1. **Interfaces de programación (API)**: Definen cómo los componentes de software interactúan entre sí.
-
-   ```java
-   public interface RepositorioCliente {
-       Cliente buscarPorId(String id);
-       List<Cliente> buscarPorNombre(String nombre);
-       void guardar(Cliente cliente);
-       void eliminar(String id);
-   }
-   ```
-
-1. **Interfaces de usuario (UI)**: Definen cómo los usuarios interactúan con el sistema.
-
-1. **Interfaces de comunicación**: Definen cómo los sistemas interactúan entre sí (por ejemplo, REST, SOAP, gRPC).
-
-1. **Interfaces de abstracción**: Crean una capa de abstracción sobre operaciones similares.
-
-   ```java
-   // Interfaz de abstracción para diferentes almacenamientos
-   public interface Almacenamiento {
-       void escribir(String clave, byte[] datos);
-       byte[] leer(String clave);
-       boolean existe(String clave);
-       void eliminar(String clave);
-   }
-   
-   // Implementaciones para diferentes tecnologías
-   public class AlmacenamientoArchivo implements Almacenamiento { /*...*/ }
-   public class AlmacenamientoS3 implements Almacenamiento { /*...*/ }
-   public class AlmacenamientoRedis implements Almacenamiento { /*...*/ }
-   ```
+> [Tipos de interfaces](interfacesTipos.md)
 
 ## ¿Para qué?
 
