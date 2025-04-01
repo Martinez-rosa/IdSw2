@@ -196,71 +196,9 @@ Para aplicar efectivamente el principio de Abstracción de Interfaz en el diseñ
 
 El primer paso es detectar síntomas de interfaces mal diseñadas:
 
-#### Clases alternativas con interfaces diferentes
-
-Componentes que realizan tareas similares pero con interfaces incompatibles.
-  
-  ```java
-  // Problema: Interfaces diferentes para operaciones similares
-  interface GestorArchivos {
-      byte[] obtenerContenido(String ruta);
-      void guardarContenido(String ruta, byte[] datos);
-  }
-  
-  interface ManejadorDocumentos {
-      String leerDocumento(String id);
-      boolean escribirDocumento(String id, String contenido);
-  }
-  
-  // Solución: Interfaz unificada
-  interface GestorContenido {
-      byte[] leer(String identificador);
-      void escribir(String identificador, byte[] contenido);
-  }
-  ```
-
-#### Comportamiento obvio no implementado
-
-Interfaces que omiten operaciones que los clientes razonablemente esperarían.
-
-  ```java
-  // Problema: Operación obvia faltante
-  interface Coleccion<T> {
-      void agregar(T elemento);
-      T obtener(int indice);
-      // Falta método para eliminar elementos
-  }
-  
-  // Solución: Incluir operación esperada
-  interface Coleccion<T> {
-      void agregar(T elemento);
-      T obtener(int indice);
-      void eliminar(int indice);
-  }
-  ```
-
-#### Responsabilidad fuera de lugar
-
-Operaciones ubicadas en componentes inapropiados.
-
-  ```java
-  // Problema: Responsabilidad mal ubicada
-  class Cliente {
-      // ...
-      public void guardarEnBaseDatos() {
-          // Lógica de persistencia dentro de la entidad
-      }
-  }
-  
-  // Solución: Reubicar responsabilidad
-  class Cliente {
-      // Solo datos y comportamiento de dominio
-  }
-  
-  interface RepositorioCliente {
-      void guardar(Cliente cliente);
-  }
-  ```
+- [Clases alternativas con interfaces diferentes](sc.acdi.md)
+- [Comportamiento obvio no implementado](sc.coni.md)
+- [Responsabilidad fuera de lugar](sc.mr.md)
 
 ### Diseñar interfaces sólidas
 
