@@ -311,10 +311,17 @@ interface ServicioAutenticacion {
 
 #### Segregar las interfaces
 
-Dividir interfaces grandes en más pequeñas y específicas:
+Dividir interfaces grandes en más pequeñas y específicas.
+
+<div align=center>
+<table>
+<tr>
+<th>Monolito</th><th>Mejor</th>
+</tr>
+<tr>
+<td>
 
 ```java
-// Interfaz monolítica
 interface Documento {
     void abrir();
     void leer();
@@ -323,8 +330,11 @@ interface Documento {
     void imprimir();
     void mostrarPrevisualizacion();
 }
+```
+</td>
+<td>
 
-// Interfaces segregadas
+```java
 interface DocumentoLegible {
     void abrir();
     void leer();
@@ -340,6 +350,10 @@ interface DocumentoImprimible {
     void mostrarPrevisualizacion();
 }
 ```
+</td>
+</tr>
+</table>
+</div>
 
 ### Técnicas de implementación
 
