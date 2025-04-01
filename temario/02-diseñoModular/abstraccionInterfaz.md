@@ -106,34 +106,63 @@ public interface Coleccion {
 
 1. **Completa**: Debe cubrir todos los aspectos significativos de la abstracción, siendo lo suficientemente general como para ser comúnmente utilizable por cualquier cliente.
 
-   ```java
-   // Interfaz más completa para una colección
-   public interface Coleccion<T> {
-       void agregar(T elemento);
-       T obtener(int indice);
-       boolean contiene(T elemento);
-       int tamaño();
-       boolean estaVacia();
-       void eliminar(T elemento);
-       Iterator<T> iterador();
-   }
-   ```
+
+<div align=center>
+<table>
+<tr>
+<th>Completa</th>
+</tr>
+<tr>
+<td>
+
+```java
+public interface Coleccion<T> {
+    void agregar(T elemento);
+    T obtener(int indice);
+    boolean contiene(T elemento);
+    int tamaño();
+    boolean estaVacia();
+    void eliminar(T elemento);
+    Iterator<T> iterador();
+}
+```
+</td>
+</tr>
+</table>
+</div>
+
+
 
 1. **Primitiva**: Las operaciones deben ser fundamentales e indiscutiblemente necesarias. Una operación es primitiva si solo puede implementarse a través del acceso a la representación subyacente o si, aunque podría implementarse sobre otras operaciones primitivas, hacerlo sería significativamente menos eficiente.
 
-   ```java
-   // Operaciones primitivas
-   public interface Coleccion<T> {
-       void agregar(T elemento);       // Primitiva: requiere acceso al estado interno
-       T obtener(int indice);          // Primitiva: requiere acceso al estado interno
-       int tamaño();                   // Primitiva: requiere conocer estado interno
-       
-       // No primitiva: podría implementarse usando las anteriores
-       default boolean estaVacia() {
-           return tamaño() == 0;
-       }
-   }
-   ```
+
+<div align=center>
+<table>
+<tr>
+<th>Primitiva</th>
+</tr>
+<tr>
+<td>
+
+```java
+public interface Coleccion<T> {
+    void agregar(T elemento);
+    T obtener(int indice);
+    int tamaño();
+    
+    // No primitiva: podría implementarse usando las anteriores
+    default boolean estaVacia() {
+        return tamaño() == 0;
+    }
+}
+```
+</td>
+</tr>
+</table>
+</div>
+
+
+
 
 ### Tipos de interfaces en el diseño de software
 
