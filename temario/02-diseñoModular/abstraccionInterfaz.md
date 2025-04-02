@@ -2,6 +2,20 @@
 
 ## ¿Por qué?
 
+Entiendase por interfaz como el punto de conexión enre diferentes partes de un sistema de software, en el que se definen un conjunto de operaciones, métodos o funciones que un componente expone para ser utilizados por otros componentes, estableciendo claramente:
+
+<div align=center>
+
+|Que operaciones|Que parámetros|Que resultados|Que errores o excepciones|
+|-|-|-|-|
+|están disponibles|requieren|devuelven|pueden producirse|
+
+</div>
+
+> *Una interfaz bien diseñada no sólo describe lo que un sistema hace, sino que revela su intención, ocultando detalles no esenciales.*
+>
+> — Kent Beck
+
 El desarrollo de sistemas complejos enfrenta un desafío fundamental en la comunicación entre componentes. Cuando las interfaces entre módulos se diseñan de manera inconsistente, incompleta o excesivamente detallada, surgen numerosos problemas que afectan la calidad y mantenibilidad del software.
 
 Estas deficiencias en la comunicación entre componentes se manifiestan en diversos problemas:
@@ -50,11 +64,7 @@ Estos componentes realizan operaciones conceptualmente idénticas, pero con inte
 
 ## ¿Qué?
 
-La Abstracción de Interfaz es un principio de diseño que define cómo los componentes exponen su funcionalidad y se comunican entre sí, proporcionando contratos claros, consistentes y adecuadamente abstraídos.
-
-> *Una interfaz bien diseñada no sólo describe lo que un sistema hace, sino que revela su intención, ocultando detalles no esenciales.*
->
-> — Kent Beck
+La Abstracción de interfaz es un principio de diseño que define cómo los componentes exponen su funcionalidad y se comunican entre sí, proporcionando contratos claros, consistentes y adecuadamente abstraídos.
 
 Este principio formaliza la separación entre el "qué" (la funcionalidad proporcionada) y el "cómo" (los detalles de implementación), estableciendo los fundamentos para un acoplamiento bajo y una evolución controlada.
 
