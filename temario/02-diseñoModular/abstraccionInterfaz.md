@@ -2,7 +2,7 @@
 
 ## ¿Por qué?
 
-Entiendase por interfaz como el punto de conexión enre diferentes partes de un sistema de software, en el que se definen un conjunto de operaciones, métodos o funciones que un componente expone para ser utilizados por otros componentes, estableciendo claramente:
+Entiendase por interfaz como el punto de conexión entre diferentes partes de un sistema de software, en el que se definen un conjunto de operaciones, métodos o funciones que un componente expone para ser utilizados por otros componentes, estableciendo claramente:
 
 <div align=center>
 
