@@ -2,13 +2,27 @@
 
 ## ¿Por qué?
 
-El desarrollo de software fiable enfrenta constantemente el desafío de asegurar el comportamiento correcto de los componentes y sus interacciones. Cuando las expectativas entre los proveedores y consumidores de servicios no están claramente definidas y verificadas, surgen numerosos problemas que afectan la calidad del sistema.
+El desarrollo de software fiable enfrenta constantemente el desafío de asegurar el comportamiento correcto de los componentes y sus interacciones.
+
+> *Un caso típico que ilustra estos problemas es la siguiente situación:*
+>
+> - *Un método divide dos números sin verificar si el divisor es cero, asumiendo que el código llamante habrá realizado esta verificación.*
+> - *El código llamante, por su parte, asume que el método manejará adecuadamente los divisores inválidos.*
+>
+> *El resultado es un error en tiempo de ejecución que podría haberse evitado con una definición clara de responsabilidades.*
+
+Cuando las expectativas entre los proveedores y consumidores de servicios no están claramente definidas y verificadas, surgen numerosos problemas que afectan la calidad del sistema.
 
 Estas deficiencias en la formalización de expectativas se manifiestan en diversos problemas:
 
 - **Errores silenciosos**: Comportamientos incorrectos que pasan desapercibidos hasta etapas avanzadas del desarrollo o incluso producción, multiplicando el costo de su corrección.
-
 - **Programación defensiva**: Código sobrecargado con verificaciones redundantes en múltiples lugares, aumentando la complejidad y reduciendo la legibilidad.
+- **Responsabilidades ambiguas**: Confusión sobre quién debe verificar la validez de los datos, llevando a situaciones donde:
+  - Nadie realiza la verificación, causando errores
+  - Múltiples componentes realizan las mismas verificaciones, creando redundancia
+- **Propagación de estados inválidos**: Valores incorrectos que se propagan a través del sistema, causando fallos en componentes alejados del origen del problema.
+- **Documentación insuficiente**: Comentarios y documentación informal que no especifica claramente las condiciones requeridas para la correcta operación de un componente.
+- **Pruebas incompletas**: Dificultad para diseñar casos de prueba exhaustivos sin conocer formalmente las restricciones y garantías de los componentes.
 
 ```java
 // Ejemplo de programación defensiva
@@ -41,18 +55,6 @@ public void procesarPedido(Pedido pedido) {
 }
 ```
 
-- **Responsabilidades ambiguas**: Confusión sobre quién debe verificar la validez de los datos, llevando a situaciones donde:
-  - Nadie realiza la verificación, causando errores
-  - Múltiples componentes realizan las mismas verificaciones, creando redundancia
-
-- **Propagación de estados inválidos**: Valores incorrectos que se propagan a través del sistema, causando fallos en componentes alejados del origen del problema.
-
-- **Documentación insuficiente**: Comentarios y documentación informal que no especifica claramente las condiciones requeridas para la correcta operación de un componente.
-
-- **Pruebas incompletas**: Dificultad para diseñar casos de prueba exhaustivos sin conocer formalmente las restricciones y garantías de los componentes.
-
-Un caso típico que ilustra estos problemas es la siguiente situación: un método divide dos números sin verificar si el divisor es cero, asumiendo que el código llamante habrá realizado esta verificación. El código llamante, por su parte, asume que el método manejará adecuadamente los divisores inválidos. El resultado es un error en tiempo de ejecución que podría haberse evitado con una definición clara de responsabilidades.
-
 ## ¿Qué?
 
 El Diseño por Contrato (Design by Contract™ o DbC) es un enfoque de desarrollo de software introducido por Bertrand Meyer en el lenguaje de programación Eiffel, que formaliza las obligaciones mutuas entre componentes mediante la especificación explícita de precondiciones, postcondiciones e invariantes.
@@ -61,11 +63,12 @@ El Diseño por Contrato (Design by Contract™ o DbC) es un enfoque de desarroll
 >
 > — Bertrand Meyer
 
+
 Este enfoque proporciona un marco sistemático para definir y verificar el comportamiento esperado de los componentes, tratando sus interacciones como contratos formales que establecen:
 
-- Lo que el cliente debe garantizar antes de invocar una operación
-- Lo que el proveedor garantiza después de ejecutar la operación
-- Las propiedades que siempre se mantienen durante la vida del objeto
+- Lo que el cliente debe garantizar **antes** de invocar una operación
+- Lo que el proveedor garantiza **después** de ejecutar la operación
+- Las propiedades que **siempre** se mantienen durante la vida del objeto
 
 ### Elementos del contrato
 
@@ -73,21 +76,31 @@ Este enfoque proporciona un marco sistemático para definir y verificar el compo
 
 Las precondiciones especifican las restricciones que deben cumplirse antes de que un método pueda ejecutarse correctamente. Representan las obligaciones del cliente (código llamante) y los beneficios para el servidor (código llamado).
 
+<div align=center>
+<table>
+<tr>
+<th>Contrato</th><th>Implementación</th>
+</tr>
+<tr>
+<td>
+Calcula la raíz cuadrada de un número.
+
+- ***numero*** El número para calcular su raíz cuadrada
+- numero >= 0
+- ***devuelve*** La raíz cuadrada del número
+</td><td>
+
 ```java
-/**
- * Calcula la raíz cuadrada de un número.
- *
- * @param numero El número para calcular su raíz cuadrada
- * @return La raíz cuadrada del número
- * @pre numero >= 0
- */
 public double raizCuadrada(double numero) {
     assert numero >= 0 : "La precondición 'numero >= 0' ha sido violada";
     
-    // Implementación asumiendo que numero es no negativo
     return Math.sqrt(numero);
 }
 ```
+</td>
+</tr>
+</table>
+</div>
 
 Las precondiciones:
 
