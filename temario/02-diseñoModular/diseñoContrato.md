@@ -170,10 +170,14 @@ Las postcondiciones:
 
 Los invariantes de clase especifican condiciones que deben mantenerse durante toda la vida de un objeto, tanto antes como después de cualquier operación pública. Representan la consistencia interna que la clase debe mantener.
 
+<div align=center>
+
 ||Contrato|
 |-|-|
 |**Invariante**|- 0 <= tamaño <= capacidad<br>- elementos no es null
 |`public void apilar(T elemento)`|- ***elemento*** El elemento a añadir<br>- ***condicion*** !estaLlena()<br>- ***postcondicion***<br>&nbsp;&nbsp;- tamaño == old(tamaño) + 1<br>&nbsp;&nbsp;- cima() == elemento
+
+</div>
 
 ```java
 public class PilaAcotada<T> {
