@@ -72,6 +72,14 @@ Este enfoque proporciona un marco sistemático para definir y verificar el compo
 
 ### Elementos del contrato
 
+<div align=center>
+
+|Precondiciones|Postcondiciones|Invariantes|
+|-|-|-|
+|Representan las obligaciones del cliente (código llamante) y los beneficios para el servidor (código llamado).|Representan las obligaciones del servidor y los beneficios para el cliente.|Representan la consistencia interna que la clase debe mantener.|
+
+</div>
+
 #### Precondiciones
 
 Las precondiciones especifican las restricciones que deben cumplirse antes de que un método pueda ejecutarse correctamente. Representan las obligaciones del cliente (código llamante) y los beneficios para el servidor (código llamado).
@@ -83,11 +91,13 @@ Las precondiciones especifican las restricciones que deben cumplirse antes de qu
 </tr>
 <tr>
 <td>
-Calcula la raíz cuadrada de un número.
+
+**Calcula la raíz cuadrada de un número.**
 
 - ***numero*** El número para calcular su raíz cuadrada
-- numero >= 0
-- ***devuelve*** La raíz cuadrada del número
+- ***condición*** numero >= 0
+- ***postcondicion***
+  - ***devuelve*** La raíz cuadrada del número
 </td><td>
 
 ```java
@@ -112,17 +122,27 @@ Las precondiciones:
 
 Las postcondiciones especifican las garantías que proporciona un método después de su ejecución exitosa. Representan las obligaciones del servidor y los beneficios para el cliente.
 
+<div align=center>
+<table>
+<tr>
+<th>Contrato</th><th>Implementación</th>
+</tr>
+<tr>
+<td>
+
+**Busca un elemento en una colección ordenada.**
+
+- ***coleccion*** La colección ordenada donde buscar
+- ***elemento*** El elemento a buscar
+- ***postcondicion***
+  - ***devuelve*** El índice del elemento en la colección o -1 si no se encuentra.
+  - ***garantizando*** resultado >= -1 && resultado < coleccion.length
+    - resultado != -1 implica coleccion[resultado] == elemento
+    - resultado == -1 implica !existe i: coleccion[i] == elemento
+
+</td><td>
+
 ```java
-/**
- * Busca un elemento en una colección ordenada.
- *
- * @param coleccion La colección ordenada donde buscar
- * @param elemento El elemento a buscar
- * @return El índice del elemento en la colección, o -1 si no se encuentra
- * @post resultado >= -1 && resultado < coleccion.length
- * @post resultado != -1 implica coleccion[resultado] == elemento
- * @post resultado == -1 implica !existe i: coleccion[i] == elemento
- */
 public int busquedaBinaria(int[] coleccion, int elemento) {
     // Implementación...
     int resultado = /* cálculo */;
@@ -135,6 +155,10 @@ public int busquedaBinaria(int[] coleccion, int elemento) {
     return resultado;
 }
 ```
+</td>
+</tr>
+</table>
+</div>
 
 Las postcondiciones:
 
@@ -146,13 +170,12 @@ Las postcondiciones:
 
 Los invariantes de clase especifican condiciones que deben mantenerse durante toda la vida de un objeto, tanto antes como después de cualquier operación pública. Representan la consistencia interna que la clase debe mantener.
 
+||Contrato|
+|-|-|
+|**Invariante**|- 0 <= tamaño <= capacidad<br>- elementos no es null
+|`public void apilar(T elemento)`|- ***elemento*** El elemento a añadir<br>- ***condicion*** !estaLlena()<br>- ***postcondicion***<br>&nbsp;&nbsp;- tamaño == old(tamaño) + 1<br>&nbsp;&nbsp;- cima() == elemento
+
 ```java
-/**
- * Representa una pila con capacidad limitada.
- * 
- * @inv 0 <= tamaño <= capacidad
- * @inv elementos no es null
- */
 public class PilaAcotada<T> {
     private final Object[] elementos;
     private final int capacidad;
@@ -168,14 +191,6 @@ public class PilaAcotada<T> {
         verificarInvariante();
     }
     
-    /**
-     * Añade un elemento a la pila.
-     * 
-     * @param elemento El elemento a añadir
-     * @pre !estaLlena()
-     * @post tamaño == old(tamaño) + 1
-     * @post cima() == elemento
-     */
     public void apilar(T elemento) {
         verificarInvariante();
         assert !estaLlena() : "Precondición violada: la pila está llena";
@@ -409,90 +424,6 @@ public class CuentaBancaria {
             "Invariante violado: saldo >= saldoMinimo";
         assert numeroCuenta != null && !numeroCuenta.isEmpty() : 
             "Invariante violado: numeroCuenta válido";
-    }
-}
-```
-
-### Utilizar herramientas y técnicas de implementación
-
-#### Aserciones nativas
-
-Usar las capacidades de aserción del lenguaje:
-
-```java
-// Java assert
-assert condicion : "Mensaje de error si la condición es falsa";
-
-// C# Debug.Assert
-Debug.Assert(condicion, "Mensaje de error");
-
-// C++ assert
-assert(condicion && "Mensaje de error");
-```
-
-#### Bibliotecas de contratos
-
-Utilizar bibliotecas especializadas:
-
-```java
-// Java con Google Guava
-Preconditions.checkArgument(monto > 0, "El monto debe ser positivo");
-Preconditions.checkNotNull(cliente, "El cliente no puede ser nulo");
-
-// C# Code Contracts
-Contract.Requires(monto > 0);
-Contract.Ensures(Contract.Result<double>() >= 0);
-
-// Python con PyContracts
-@contract(input='array,!empty', result='float,>=0')
-def calcularPromedio(array):
-    return sum(array) / len(array)
-```
-
-#### Frameworks de validación
-
-Integrar con frameworks de validación:
-
-```java
-// Java con Bean Validation
-public class Pedido {
-    @NotNull
-    private Cliente cliente;
-    
-    @NotEmpty
-    private List<Item> items;
-    
-    @Min(1)
-    private int cantidad;
-    
-    // Getters, setters...
-}
-
-// Validación
-ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-Validator validator = factory.getValidator();
-Set<ConstraintViolation<Pedido>> violaciones = validator.validate(pedido);
-```
-
-#### Aspectos (AOP)
-
-Utilizar programación orientada a aspectos para verificaciones:
-
-```java
-// AspectJ para verificar precondiciones
-@Aspect
-public class ContractAspect {
-    @Before("execution(* transferir(Cuenta, Cuenta, double)) && args(origen, destino, monto)")
-    public void verificarPrecondicionesTransferencia(Cuenta origen, Cuenta destino, double monto) {
-        if (origen == null || destino == null) {
-            throw new IllegalArgumentException("Las cuentas no pueden ser nulas");
-        }
-        if (monto <= 0) {
-            throw new IllegalArgumentException("El monto debe ser positivo");
-        }
-        if (origen.getSaldo() < monto) {
-            throw new IllegalArgumentException("Saldo insuficiente");
-        }
     }
 }
 ```
