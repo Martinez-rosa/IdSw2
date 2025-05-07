@@ -1,14 +1,14 @@
 public class Recepcionista {
 
 	public void recibir(Persona persona) {
-		System.out.println("!!!!!!!!!! Soy un recepcionista que se alegra de su visita");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recepcionista que se alegra de su visita");
 		persona.aceptar(this);		
 	}
 	
 	public void visitar(Mujer mujer) {
-		System.out.println("!!!!!!!!!! Soy un recepcionista que se admira de su belleza");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recepcionista que se admira de su belleza");
 		mujer.escucharHalago();	
-		System.out.println("!!!!!!!!!! Soy un recepcionista que se admira de su existencia");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recepcionista que se admira de su existencia");
 		mujer.escucharPiropo();
 	}
 
@@ -17,11 +17,11 @@ public class Recepcionista {
 	}
 
 	public void recibirPropina(int euros) {
-		System.out.println("!!!!!!!!!! Soy un recepcionista que gané " + euros + " euros");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recepcionista que gané " + euros + " euros");
 	}
 	
 	public void agradecerVisita() {
-		System.out.println("!!!!!!!!!! Soy un recepcionista que agradece la visita");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recepcionista que agradece la visita");
 	}
 
 }

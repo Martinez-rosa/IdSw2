@@ -1,15 +1,15 @@
 public class Recepcionista implements VisitadorPersona{
 
 	public void recibir(Persona persona) {
-		System.out.println("!!!!!!!!!! Soy un recpcionista que se alegra de su visita");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recpcionista que se alegra de su visita");
 		persona.aceptar(this);		
 	}
 	
 	@Override
 	public void visitar(Mujer mujer) {
-		System.out.println("!!!!!!!!!! Soy un recpcionista que se admira de su belleza");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recpcionista que se admira de su belleza");
 		mujer.escucharHalago();	
-		System.out.println("!!!!!!!!!! Soy un recpcionista que se admira de su existencia");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recpcionista que se admira de su existencia");
 		mujer.escucharPiropo();
 	}
 
@@ -19,11 +19,11 @@ public class Recepcionista implements VisitadorPersona{
 	}
 
 	public void recibirPropina(int euros) {
-		System.out.println("!!!!!!!!!! Soy un recpcionista que gané " + euros + " euros");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recpcionista que gané " + euros + " euros");
 	}
 	
 	public void agradecerVisita() {
-		System.out.println("!!!!!!!!!! Soy un recpcionista que agradece la visita");
+		System.out.println("CLASE_RECEPCIONISTA Soy un recpcionista que agradece la visita");
 	}
 
 }
