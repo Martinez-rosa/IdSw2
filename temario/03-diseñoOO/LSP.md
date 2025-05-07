@@ -33,3 +33,6 @@ Para que `S` sea un subtipo válido de `T`, deben cumplirse las siguientes condi
 
 </div>
 
+|Sustituibilidad completa|Principio orientado al cliente|Herencia centrada en el comportamiento observable|
+|-|-|-|
+|El Principio de Sustitución de Liskov solo se cumple cuando los tipos derivados son **totalmente** sustituibles por sus tipos base. Es decir, **las funciones que usan referencias al tipo base pueden operar con instancias de los tipos derivados sin modificaciones ni efectos colaterales inesperados**. La sustitución debe ser **segura, transparente e "impune"** para el cliente.|El Principio de Sustitución de Liskov establece que las funciones que usan referencias o punteros a una clase base deben poder usar objetos de las clases derivadas **sin saber nada de ellas**. Este principio preserva la abstracción y evita que el código cliente se acople a detalles de implementación.|Por tanto, la relación de subtipado y herencia no se refiere a la implementación interna o al “comportamiento privado” del objeto, sino al **comportamiento público observable del cual dependen los clientes**. Es ese contrato visible el que debe mantenerse para respetar LSP.|
