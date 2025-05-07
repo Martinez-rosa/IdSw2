@@ -1,74 +1,92 @@
 @startuml
 
+class OtroRol  {
++ void recibir(Persona)
++ void visitar(Mujer)
++ void visitar(Hombre)
+}
+
+class Camarero  {
++ void recibir(Persona)
++ void visitar(Mujer)
++ void visitar(Hombre)
+}
+note right
+void visitar
+  (Mujer mujer) {
+  mujer
+    .recibirPiropo();
+}
+
+void visitar
+  (Hombre hombre){
+  hombre
+    .recibirPalmada();
+}
+endnote
+
+package personas {
+
 interface VisitadorPersona {
-  +visitar(Mujer mujer): void
-  +visitar(Hombre hombre): void
++ void visitar(Mujer)
++ void visitar(Hombre)
 }
 
+together {
 abstract class Persona {
-  +saludar(): void
-  +pedir(): void
-  +despedirse(): void
-  +aceptar(VisitadorPersona visitadorPersona): void
-}
-
-class Hombre {
-  +recibirPalmada(recepcionista: Recepcionista): void
-  +aceptar(VisitadorPersona visitadorPersona): void
++ {abstract} void aceptar\n (VisitadorPersona)
 }
 
 class Mujer {
-  +escucharHalago(): void
-  +escucharPiropo(): void
-  +aceptar(VisitadorPersona visitadorPersona): void
++ void recibirPiropo()
++ void aceptar(VisitadorPersona)
+}
+note right
+void aceptar
+  (VisitadorPersona
+    visitadorPersona) {
+  visitadorPersona
+    .visitar(this);
+}
+endnote
+
+class Hombre  {
++ void recibirPalmada()
++ void aceptar(VisitadorPersona)
+}
+note right
+void aceptar
+  (VisitadorPersona
+    visitadorPersona) {
+  visitadorPersona
+    .visitar(this);
+}
+endnote
+
+}
 }
 
-class Recepcionista {
-  +recibir(persona: Persona): void
-  +visitar(Mujer mujer): void
-  +visitar(Hombre hombre): void
-  +recibirPropina(euros: int): void
-  +agradecerVisita(): void
-}
+Restaurante *-down-> Camarero
+Restaurante *-down-> OtroRol
+Restaurante *-down-> Persona : cliente
 
-class Camarero {
-  +servir(persona: Persona): void
-  +visitar(Mujer mujer): void
-  +visitar(Hombre hombre): void
-  +recoger(): void
-}
+Persona <|-down- Hombre
+Persona <|-down- Mujer
 
-class Restaurante {
-  -recepcionista: Recepcionista
-  -camarero: Camarero
-  -simularEscenario(): void
-  -simularEscenario(persona: Persona): void
-  +main(args: String[]): void
-}
+VisitadorPersona <|-down- Camarero
+VisitadorPersona <|-down- OtroRol
 
-Persona <|-- Hombre
-Persona <|-- Mujer
+OtroRol ..> Persona
+OtroRol ..> Hombre
+OtroRol ..> Mujer
 
-VisitadorPersona <|.. Recepcionista
-VisitadorPersona <|.. Camarero
+Camarero ..> Persona
+Camarero ..> Hombre
+Camarero ..> Mujer
 
-Restaurante --> Recepcionista
-Restaurante --> Camarero
-Restaurante --> Persona
-Restaurante ..> Hombre
-Restaurante ..> Mujer
-
-Recepcionista --> Mujer
-Recepcionista --> Hombre
-Recepcionista --> Persona
-
-Camarero --> Mujer
-Camarero --> Hombre
-Camarero --> Persona
-
-Hombre --> Recepcionista : recibe como parámetro
-Mujer --> VisitadorPersona : como parámetro
-Hombre --> VisitadorPersona : como parámetro
+Hombre ..> VisitadorPersona
+Mujer ..> VisitadorPersona
+Persona ..> VisitadorPersona
 
 
 legend left

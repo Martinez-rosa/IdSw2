@@ -66,6 +66,12 @@ public void visitar(Hombre hombre) { ... } // segundo despacho
 public void visitar(Mujer mujer)  { ... }
 ```
 
+<div align=center>
+
+![](/images/temario/03-diseñoOO/src/00-DD/DD.svg)
+
+</div>
+
 ### Cómo mejora sobre la primera
 
 1. Elimina `instanceof` y `casting`.

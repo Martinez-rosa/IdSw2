@@ -1,0 +1,17 @@
+participant bareto as ":Restaurante"
+participant cholo as ":Camarero"
+
+participant adán as ":Hombre"
+participant eva as ":Mujer"
+
+bareto -> bareto : simularEscenario
+
+bareto -> cholo : recibir(Hombre)
+cholo -> adán : aceptar(this)
+adán -> cholo : visitar(this)
+cholo -> adán : recibirPalmada()
+
+bareto -> cholo : recibir(Mujer)
+cholo -> eva : aceptar(this)
+eva -> cholo : visitar(this)
+cholo -> eva : recibirPiropo()
