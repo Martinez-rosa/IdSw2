@@ -20,7 +20,7 @@
     },
     "peacock.color": "#571504",
     "java.project.sourcePaths": [
-        "temario/03-diseñoOO/ejemplo/src",
-        "temario/03-diseñoOO/src/00-DD/v000"
+        "temario/03-diseñoOO/src/00-DD/v000",
+        "temario/03-diseñoOO/src/00-DD/v001-basico"
     ]
 }

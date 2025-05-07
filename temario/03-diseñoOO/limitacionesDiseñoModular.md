@@ -182,20 +182,11 @@ Este enfoque presenta varios problemas:
 1. Los clientes deben conocer todos los tipos concretos en la jerarquía, lo cual crea un alto acoplamiento.
 1. No podemos añadir nuevas implementaciones sin modificar el código existente.
 
-> [El doble despacho](dobleDespacho.md)
-
 ## Enfoque 4: técnica del doble despacho
 
 La técnica del Doble Despacho resuelve este problema mediante la delegación de la responsabilidad de "saber qué tipo soy" al propio objeto, aprovechando el polimorfismo en lugar de las comprobaciones de tipo.
 
 ```java
-// Interfaz para los visitantes
-interface VisitantePersona {
-    void visitar(Hombre hombre);
-    void visitar(Mujer mujer);
-    // Nuevos tipos requieren nuevos métodos aquí
-}
-
 // Clase base con método aceptar para el visitante
 abstract class Persona {
     // Atributos y métodos comunes
@@ -230,6 +221,13 @@ class Mujer extends Persona {
     void aceptar(VisitantePersona visitante) {
         visitante.visitar(this); // Primer despacho
     }
+}
+
+// Interfaz para los visitantes
+interface VisitantePersona {
+    void visitar(Hombre hombre);
+    void visitar(Mujer mujer);
+    // Nuevos tipos requieren nuevos métodos aquí
 }
 
 // Cliente implementa el visitante

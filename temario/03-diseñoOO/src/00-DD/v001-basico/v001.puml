@@ -1,0 +1,58 @@
+@startuml
+
+abstract class Persona {
+  +saludar(): void
+  +despedirse(): void
+  +aceptar(recepcionista: Recepcionista): void
+}
+
+class Hombre {
+  +recibirPalmada(recepcionista: Recepcionista): void
+  +aceptar(recepcionista: Recepcionista): void
+}
+
+class Mujer {
+  +escucharHalago(): void
+  +escucharPiropo(): void
+  +aceptar(recepcionista: Recepcionista): void
+}
+
+class Recepcionista {
+  +recibir(persona: Persona): void
+  +visitar(Mujer mujer): void
+  +visitar(Hombre hombre): void
+  +recibirPropina(euros: int): void
+  +agradecerVisita(): void
+}
+
+class Restaurante {
+  -recepcionista: Recepcionista
+  -simularEscenario(): void
+  -simularEscenario(persona: Persona): void
+  +main(args: String[]): void
+}
+
+Persona <|-- Hombre
+Persona <|-- Mujer
+
+Restaurante *--> Recepcionista : tiene una instancia
+Restaurante *-d-> Persona : usa como parámetro
+Restaurante ..> Hombre : instancia directa
+Restaurante ..> Mujer : instancia directa
+
+Recepcionista --> Persona : usa método aceptar()
+Recepcionista --> Hombre : llama visitar(Hombre)
+Recepcionista --> Mujer : llama visitar(Mujer)
+
+Hombre --> Recepcionista : lo recibe como parámetro
+Mujer --> Recepcionista : lo recibe como parámetro
+
+legend left
+<b><i>2Think</i></b>
+====
+- Persona: Método aceptar() habilita el doble despacho: la lógica se delega a Recepcionista.visitar(...)
+- Recepcionista: Usa doble despacho para comportarse distinto según el tipo concreto de Persona
+- Restaurante: Crea instancias de Hombre y Mujer, y usa la interfaz Persona
+endlegend
+
+@enduml
