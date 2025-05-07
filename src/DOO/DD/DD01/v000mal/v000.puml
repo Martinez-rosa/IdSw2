@@ -1,0 +1,26 @@
+@startuml
+title Ejemplo v000 - Uso de instanceof
+
+class Animal {
+  -cabeza: Cabeza
+  -cuerpo: Cuerpo
+  -String tipo
+  +moverse()
+  +comunicarse()
+  +comer()
+}
+
+class Cuidador {
+  +alimentar(Animal)
+}
+
+Animal <-- Cuidador : usa
+
+note right of Cuidador::alimentar
+  if (animal instanceof Perro) {
+    // Lógica para perro
+  } else if (animal instanceof Pajaro) {
+    // Lógica para pájaro
+  }
+end note
+@enduml

@@ -5,37 +5,45 @@ Este ejemplo ilustra perfectamente el desafío de encontrar el equilibrio adecua
 ## Enfoque 1: Una única clase asume toda la responsabilidad
 
 ```java
-class Persona {
+class Animal {
     Cabeza cabeza;
-    Tronco tronco;
+    Cuerpo cuerpo;
     Extremidades[] extremidades;
-    Pene pene;
-    Vagina vagina;
-    String tipo;
+    Alas alas;
+    Cola cola;
+    String tipo; // "Perro", "Pájaro", etc.
     
-    Persona(String tipo) {
+    Animal(String tipo) {
         // ...
     }
     
-    void bailar() {
-        // ...
+    void moverse() {
+        if (tipo.equals("Perro")) {
+            // Correr en cuatro patas
+        } else if (tipo.equals("Pájaro")) {
+            // Volar batiendo alas
+        }
     }
     
-    void correr() {
-        // ...
+    void comunicarse() {
+        if (tipo.equals("Perro")) {
+            // Ladrar
+        } else if (tipo.equals("Pájaro")) {
+            // Cantar
+        }
     }
     
-    void miccionar() {
-        if (tipo.equals("Hombre")) {
-            // ...
-        } else {
-            // ...
+    void comer() {
+        if (tipo.equals("Perro")) {
+            // Masticar carnívoro
+        } else if (tipo.equals("Pájaro")) {
+            // Picotear semillas
         }
     }
 }
 
 // Uso
-Cliente client = new Persona("Mujer");
+Cliente client = new Animal("Pájaro");
 ```
 
 ### Problemas identificados
@@ -47,60 +55,60 @@ Cliente client = new Persona("Mujer");
 ## Enfoque 2: Una clase por cada tipo de elemento
 
 ```java
-class Hombre {
+class Perro {
     Cabeza cabeza;
-    Tronco tronco;
-    Extremidades[] extremidades;
-    Pene pene;
+    Cuerpo cuerpo;
+    Extremidades[] patas;
+    Cola cola;
     
-    Hombre() {
+    Perro() {
         // ...
     }
     
-    void bailar() {
-        // ...
+    void moverse() {
+        // Correr en cuatro patas
     }
     
-    void correr() {
-        // ...
+    void comunicarse() {
+        // Ladrar con distintos tonos
     }
     
-    void miccionar() {
-        // ...
+    void comer() {
+        // Masticar y devorar
     }
 }
 
-class Mujer {
+class Pajaro {
     Cabeza cabeza;
-    Tronco tronco;
-    Extremidades[] extremidades;
-    Vagina vagina;
+    Cuerpo cuerpo;
+    Alas alas;
+    Cola cola;
     
-    Mujer() {
+    Pajaro() {
         // ...
     }
     
-    void bailar() {
-        // ...
+    void moverse() {
+        // Volar batiendo alas
     }
     
-    void correr() {
-        // ...
+    void comunicarse() {
+        // Cantar melodiosamente
     }
     
-    void miccionar() {
-        // ...
+    void comer() {
+        // Picotear con precisión
     }
 }
 
 // Uso
-Cliente client = new Mujer(); // o new Hombre();
+Cliente client = new Pajaro(); // o new Perro();
 ```
 
 ### Problemas identificados
 
 - **Alto acoplamiento**: Clientes conocen *todas* las clases derivadas.
-- **DRY**: Código duplicado en las clases (bailar, correr).
+- **DRY**: Código duplicado en las clases (moverse, comunicarse).
 - **Dificultad para extensión**: Cada nuevo tipo requiere una clase *completa* nueva.
 
 ## Enfoque 3: Jerarquía de clases
@@ -108,50 +116,73 @@ Cliente client = new Mujer(); // o new Hombre();
 Una mejor solución podría ser:
 
 ```java
-abstract class Persona {
+abstract class Animal {
     Cabeza cabeza;
-    Tronco tronco;
-    Extremidades[] extremidades;
+    Cuerpo cuerpo;
     
     // Métodos comunes
-    void bailar() {
+    void respirar() {
         // Implementación común
     }
     
-    void correr() {
+    void dormir() {
         // Implementación común
     }
     
-    // Método abstracto para comportamientos específicos
-    abstract void miccionar();
+    // Métodos abstractos para comportamientos específicos
+    abstract void moverse();
+    abstract void comunicarse();
+    abstract void comer();
 }
 
-class Hombre extends Persona {
-    Pene pene;
+class Perro extends Animal {
+    Extremidades[] patas;
+    Cola cola;
     
     @Override
-    void miccionar() {
-        // Implementación específica para hombre
+    void moverse() {
+        // Correr en cuatro patas
+    }
+    
+    @Override
+    void comunicarse() {
+        // Ladrar con distintos tonos
+    }
+    
+    @Override
+    void comer() {
+        // Masticar y devorar
     }
 }
 
-class Mujer extends Persona {
-    Vagina vagina;
+class Pajaro extends Animal {
+    Alas alas;
+    Cola cola;
     
     @Override
-    void miccionar() {
-        // Implementación específica para mujer
+    void moverse() {
+        // Volar batiendo alas
+    }
+    
+    @Override
+    void comunicarse() {
+        // Cantar melodiosamente
+    }
+    
+    @Override
+    void comer() {
+        // Picotear con precisión
     }
 }
 
 // Uso
-Persona persona = madre.getPersona();
+Animal animal = zoologico.getAnimal();
 ```
 
 ### Ventajas
 
 - **Alta cohesión**: Cada clase tiene una responsabilidad clara
-- **Bajo acoplamiento**: Los clientes trabajan con la abstracción (Persona)
+- **Bajo acoplamiento**: Los clientes trabajan con la abstracción (Animal)
 - **DRY**: Código común centralizado en la clase base
 - **Flexibilidad**: Soporta polimorfismo y extensibilidad
 
@@ -160,16 +191,17 @@ Persona persona = madre.getPersona();
 En el diseño con herencia propuesto, un cliente podría intentar diferenciar el comportamiento según el tipo concreto:
 
 ```java
-public class Recepcionista {
-    public void recibir(Persona persona) {
-        System.out.println("Soy un recepcionista que se alegra de su visita");
-        if (persona instanceof Mujer) {
-            System.out.println("Soy un recepcionista que se admira de su belleza");
-            ((Mujer) persona).escucharHalago();
-            System.out.println("Soy un recepcionista que se admira de su existencia");
-            ((Mujer) persona).escucharPiropo();
+public class Cuidador {
+    public void alimentar(Animal animal) {
+        System.out.println("Soy un cuidador que alimenta a los animales");
+        if (animal instanceof Pajaro) {
+            System.out.println("Le doy semillas especiales para aves");
+            ((Pajaro) animal).posarseEnMano();
+            System.out.println("Le silbo una melodía que le gusta");
+            ((Pajaro) animal).cantarFeliz();
         } else {
-            ((Hombre) persona).recibirPalmada(this);
+            System.out.println("Le doy croquetas premium");
+            ((Perro) animal).moverCola();
         }
     }
 }
@@ -178,7 +210,7 @@ public class Recepcionista {
 Este enfoque presenta varios problemas:
 
 1. Al diferenciar el comportamiento según el tipo concreto, estamos indicando que las subclases no son verdaderamente intercambiables.
-1. Cuando se añada un nuevo tipo (por ejemplo, `Androide`), se han de modificar todos los bloques `if-else` que comprueban tipos.
+1. Cuando se añada un nuevo tipo (por ejemplo, `Gato`), se han de modificar todos los bloques `if-else` que comprueban tipos.
 1. Los clientes deben conocer todos los tipos concretos en la jerarquía, lo cual crea un alto acoplamiento.
 1. No podemos añadir nuevas implementaciones sin modificar el código existente.
 
@@ -188,70 +220,75 @@ La técnica del Doble Despacho resuelve este problema mediante la delegación de
 
 ```java
 // Clase base con método aceptar para el visitante
-abstract class Persona {
+abstract class Animal {
     // Atributos y métodos comunes
     Cabeza cabeza;
-    Tronco tronco;
-    Extremidades[] extremidades;
+    Cuerpo cuerpo;
     
-    void bailar() { /* ... */ }
-    void correr() { /* ... */ }
+    void respirar() { /* ... */ }
+    void dormir() { /* ... */ }
     
     // Método para el doble despacho
-    abstract void aceptar(VisitantePersona visitante);
+    abstract void aceptar(VisitanteAnimal visitante);
 }
 
-class Hombre extends Persona {
-    Pene pene;
+class Perro extends Animal {
+    Extremidades[] patas;
+    Cola cola;
     
-    void miccionar() { /* ... */ }
+    void ladrar() { /* ... */ }
+    void moverCola() { /* ... */ }
     
     @Override
-    void aceptar(VisitantePersona visitante) {
+    void aceptar(VisitanteAnimal visitante) {
         visitante.visitar(this); // Primer despacho
     }
 }
 
-class Mujer extends Persona {
-    Vagina vagina;
+class Pajaro extends Animal {
+    Alas alas;
+    Cola cola;
     
-    void miccionar() { /* ... */ }
+    void volar() { /* ... */ }
+    void cantar() { /* ... */ }
     
     @Override
-    void aceptar(VisitantePersona visitante) {
+    void aceptar(VisitanteAnimal visitante) {
         visitante.visitar(this); // Primer despacho
     }
 }
 
 // Interfaz para los visitantes
-interface VisitantePersona {
-    void visitar(Hombre hombre);
-    void visitar(Mujer mujer);
+interface VisitanteAnimal {
+    void visitar(Perro perro);
+    void visitar(Pajaro pajaro);
     // Nuevos tipos requieren nuevos métodos aquí
 }
 
 // Cliente implementa el visitante
-class ProcesadorPersona implements VisitantePersona {
+class CuidadorAnimal implements VisitanteAnimal {
     @Override
-    public void visitar(Hombre hombre) {
-        // Comportamiento específico para hombre
-        hombre.miccionar();
+    public void visitar(Perro perro) {
+        // Comportamiento específico para perro
+        System.out.println("Doy croquetas al perro");
+        perro.moverCola();
         // Otras operaciones específicas...
     }
     
     @Override
-    public void visitar(Mujer mujer) {
-        // Comportamiento específico para mujer
-        mujer.miccionar();
+    public void visitar(Pajaro pajaro) {
+        // Comportamiento específico para pájaro
+        System.out.println("Doy alpiste al pájaro");
+        pajaro.cantar();
         // Otras operaciones específicas...
     }
     
-    public void procesar(Persona persona) {
+    public void cuidar(Animal animal) {
         // Comportamiento común
-        persona.bailar();
+        System.out.println("Limpio la jaula/caseta");
         
         // Doble despacho para comportamiento específico
-        persona.aceptar(this); // Segundo despacho
+        animal.aceptar(this); // Segundo despacho
     }
 }
 ```
@@ -260,8 +297,8 @@ class ProcesadorPersona implements VisitantePersona {
 
 1. No se necesitan comprobaciones de tipo (`instanceof`) en tiempo de ejecución.
 1. Añadir un nuevo tipo solo requiere:
-   - Crear la nueva subclase de `Persona`
-   - Añadir un nuevo método `visitar` en la interfaz `VisitantePersona`
+   - Crear la nueva subclase de `Animal`
+   - Añadir un nuevo método `visitar` en la interfaz `VisitanteAnimal`
    - Implementar este método en las clases visitantes existentes
 1. No hay discriminación basada en el tipo concreto dentro del código cliente.
 1. Cada comportamiento específico está encapsulado en su propio método.
@@ -271,11 +308,11 @@ class ProcesadorPersona implements VisitantePersona {
 1. **Complejidad adicional**: Introduce más interfaces y clases.
 1. **Dispersión de comportamiento**: El comportamiento relacionado con una entidad puede estar disperso en varios visitantes.
 1. **Acoplamiento circular**: Hay acoplamiento entre las jerarquías de visitante y visitado.
-1. **Evolución**: Añadir un nuevo tipo de Persona requiere modificar la interfaz Visitante y todas sus implementaciones.
+1. **Evolución**: Añadir un nuevo tipo de Animal requiere modificar la interfaz Visitante y todas sus implementaciones.
 
 ## Reflexión "*final*"
 
-Debemos de buscar el equilibrio y asumir compromisos en diseño orientado a objetos:
+Debemos buscar el equilibrio y asumir compromisos en diseño orientado a objetos:
 
 1. **Diseño monolítico** (una única clase): Simple pero rígido y poco cohesivo.
 1. **Diseño fragmentado** (una clase por tipo sin herencia): Evita condicionales pero viola DRY.

@@ -1,0 +1,50 @@
+@startuml
+title Ejemplo v001 - Doble Despacho Básico
+
+abstract class Animal {
+  -cabeza: Cabeza
+  -cuerpo: Cuerpo
+  +respirar()
+  +dormir()
+  +aceptar(Cuidador)
+}
+
+class Perro extends Animal {
+  -patas: Extremidades[]
+  -cola: Cola
+  +moverCola()
+  +aceptar(Cuidador)
+}
+
+class Pajaro extends Animal {
+  -alas: Alas
+  -cola: Cola
+  +cantar()
+  +aceptar(Cuidador)
+}
+
+class Cuidador {
+  +alimentar(Animal)
+  +visitar(Perro)
+  +visitar(Pajaro)
+}
+
+Animal <-- Cuidador : usa
+
+note right of Animal::aceptar
+  El método es abstracto
+  Cada subclase lo implementa
+end note
+
+note right of Perro::aceptar
+  cuidador.visitar(this)
+end note
+
+note right of Pajaro::aceptar
+  cuidador.visitar(this)
+end note
+
+note left of Cuidador::alimentar
+  animal.aceptar(this)
+end note
+@enduml

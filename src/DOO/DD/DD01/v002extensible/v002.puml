@@ -1,0 +1,64 @@
+@startuml
+title Ejemplo v002 - Patrón Visitante Completo
+
+interface VisitanteAnimal {
+  +visitar(Perro)
+  +visitar(Pajaro)
+}
+
+abstract class Animal {
+  -cabeza: Cabeza
+  -cuerpo: Cuerpo
+  +respirar()
+  +dormir()
+  +aceptar(VisitanteAnimal)
+}
+
+class Perro extends Animal {
+  -patas: Extremidades[]
+  -cola: Cola
+  +moverCola()
+  +ladrar()
+  +aceptar(VisitanteAnimal)
+}
+
+class Pajaro extends Animal {
+  -alas: Alas
+  -cola: Cola
+  +volar()
+  +cantar()
+  +aceptar(VisitanteAnimal)
+}
+
+class Cuidador implements VisitanteAnimal {
+  +visitar(Perro)
+  +visitar(Pajaro)
+  +cuidar(Animal)
+}
+
+class Veterinario implements VisitanteAnimal {
+  +visitar(Perro)
+  +visitar(Pajaro)
+  +examinar(Animal)
+}
+
+Animal <-- VisitanteAnimal : visita
+Perro <-- VisitanteAnimal
+Pajaro <-- VisitanteAnimal
+
+note right of Animal::aceptar
+  Método abstracto
+end note
+
+note right of Perro::aceptar
+  visitante.visitar(this)
+end note
+
+note right of Cuidador::cuidar
+  animal.aceptar(this)
+end note
+
+note right of Veterinario::examinar
+  animal.aceptar(this)
+end note
+@enduml

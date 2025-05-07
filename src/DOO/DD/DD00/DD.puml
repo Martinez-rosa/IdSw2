@@ -1,0 +1,17 @@
+participant restaurante as ":Restaurante"
+participant recepcionista as ":Recepcionista"
+
+participant hombre as ":Hombre"
+participant mujer as ":Mujer"
+
+restaurante -> restaurante : simularEscenario
+
+restaurante -> recepcionista : recibir(hombre)
+recepcionista -> hombre : aceptar(this)
+hombre -> recepcionista : visitar(this)
+recepcionista -> hombre : recibirPalmada()
+
+restaurante -> recepcionista : recibir(mujer)
+recepcionista -> mujer : aceptar(this)
+mujer -> recepcionista : visitar(this)
+recepcionista -> mujer : recibirPiropo()

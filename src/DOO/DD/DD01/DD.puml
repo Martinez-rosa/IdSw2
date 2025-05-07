@@ -1,0 +1,46 @@
+@startuml
+title Doble Despacho con Animales - Patrón Visitante
+
+interface VisitanteAnimal {
+  +visitar(Perro)
+  +visitar(Pajaro)
+}
+
+abstract class Animal {
+  +respirar()
+  +dormir()
+  +aceptar(VisitanteAnimal)
+}
+
+class Perro extends Animal {
+  +moverCola()
+  +ladrar()
+  +aceptar(VisitanteAnimal)
+}
+
+class Pajaro extends Animal {
+  +volar()
+  +cantar()
+  +aceptar(VisitanteAnimal)
+}
+
+class Cuidador implements VisitanteAnimal {
+  +visitar(Perro)
+  +visitar(Pajaro)
+  +cuidar(Animal)
+}
+
+Animal <-- Cuidador : utiliza
+Perro <-- VisitanteAnimal : visita
+Pajaro <-- VisitanteAnimal : visita
+
+note right of Perro::aceptar
+  "visitante.visitar(this)"
+  Primer despacho
+end note
+
+note right of Cuidador::cuidar
+  "animal.aceptar(this)"
+  Segundo despacho
+end note
+@enduml
