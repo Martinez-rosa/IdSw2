@@ -30,7 +30,7 @@ Para conseguir software con:
 
 ## ¿Cómo?
 
-### Principios SOLID
+### Principios SOLID (?)
 
 Los principios SOLID constituyen guías de diseño que favorecen la creación de código mantenible:
 

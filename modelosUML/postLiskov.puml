@@ -1,0 +1,10 @@
+class P
+P *-down-> T
+
+class T
+class S
+object oS
+T <|-down- S
+
+P .down.> oS
+oS ..> S
