@@ -1,0 +1,54 @@
+@startuml
+
+abstract class Persona {
+    +saludar(): void
+    +despedirse(): void
+}
+
+class Hombre {
+    +recibirPalmada(recepcionista: Recepcionista): void
+}
+
+class Mujer {
+    +escucharHalago(): void
+    +escucharPiropo(): void
+}
+
+class Recepcionista {
+    +recibir(persona: Persona): void
+    +recibirPropina(euros: int): void
+    +agradecerVisita(): void
+}
+
+class Restaurante {
+    -recepcionista: Recepcionista
+    -simularEscenario(): void
+    -simularEscenario(persona: Persona): void
+    +main(args: String[]): void
+}
+
+Persona <|-- Hombre
+Persona <|-- Mujer
+
+Restaurante *--> Recepcionista : tiene una instancia
+
+Recepcionista -d-> Persona : usa como parámetro
+Recepcionista --> Hombre
+Recepcionista --> Mujer
+
+Hombre -u-> Recepcionista
+
+Restaurante *-d--> Persona : usa como parámetro
+Restaurante .d.> Hombre : instancia directa
+Restaurante .d.> Mujer : instancia directa
+
+legend left
+<b><i>2Think</i></b>
+====
+- **Restaurante** depende de Persona y crea instancias concretas de Hombre y Mujer.
+- **Hombre** depende de Recepcionista porque recibe una instancia como parámetro
+- **Mujer** no depende de Recepcionista. Solo recibe llamadas, no invoca métodos suyos.
+- **Recepcionista** depende de Hombre y Mujer porque hace casting y llama métodos específicos
+endlegend
+
+@enduml

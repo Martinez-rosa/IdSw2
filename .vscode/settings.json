@@ -18,5 +18,9 @@
         "titleBar.inactiveBackground": "#57150499",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#571504"
+    "peacock.color": "#571504",
+    "java.project.sourcePaths": [
+        "temario/03-diseñoOO/ejemplo/src",
+        "temario/03-diseñoOO/src/00-DD/v000"
+    ]
 }

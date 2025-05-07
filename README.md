@@ -16,3 +16,4 @@
   - [x] [Cohesión](02-diseñoModular/cohesion.md)
   - [x] [Acoplamiento](02-diseñoModular/acoplamiento.md)
   - [x] [Tamaño](02-diseñoModular/tamaño.md)
+- [x] [Diseño orientado a objetos](temario/03-diseñoOO/README.md)
