@@ -1,0 +1,82 @@
+@startuml
+
+interface VisitadorPersona {
+  +visitar(Mujer mujer): void
+  +visitar(Hombre hombre): void
+}
+
+abstract class Persona {
+  +saludar(): void
+  +pedir(): void
+  +despedirse(): void
+  +aceptar(VisitadorPersona visitadorPersona): void
+}
+
+class Hombre {
+  +recibirPalmada(recepcionista: Recepcionista): void
+  +aceptar(VisitadorPersona visitadorPersona): void
+}
+
+class Mujer {
+  +escucharHalago(): void
+  +escucharPiropo(): void
+  +aceptar(VisitadorPersona visitadorPersona): void
+}
+
+class Recepcionista {
+  +recibir(persona: Persona): void
+  +visitar(Mujer mujer): void
+  +visitar(Hombre hombre): void
+  +recibirPropina(euros: int): void
+  +agradecerVisita(): void
+}
+
+class Camarero {
+  +servir(persona: Persona): void
+  +visitar(Mujer mujer): void
+  +visitar(Hombre hombre): void
+  +recoger(): void
+}
+
+class Restaurante {
+  -recepcionista: Recepcionista
+  -camarero: Camarero
+  -simularEscenario(): void
+  -simularEscenario(persona: Persona): void
+  +main(args: String[]): void
+}
+
+Persona <|-- Hombre
+Persona <|-- Mujer
+
+VisitadorPersona <|.. Recepcionista
+VisitadorPersona <|.. Camarero
+
+Restaurante --> Recepcionista
+Restaurante --> Camarero
+Restaurante --> Persona
+Restaurante ..> Hombre
+Restaurante ..> Mujer
+
+Recepcionista --> Mujer
+Recepcionista --> Hombre
+Recepcionista --> Persona
+
+Camarero --> Mujer
+Camarero --> Hombre
+Camarero --> Persona
+
+Hombre --> Recepcionista : recibe como parámetro
+Mujer --> VisitadorPersona : como parámetro
+Hombre --> VisitadorPersona : como parámetro
+
+
+legend left
+<b><i>2Think</i></b>
+====
+- Persona: acepta(VisitadorPersona) es el punto de entrada para el patrón Visitor (doble despacho)
+- VisitadorPersona: permite definir distintos comportamientos según el tipo concreto de Persona (Hombre/Mujer)
+- Restaurante: simula la interacción usando Recepcionista y Camarero como Visitadores
+endlegend
+
+@enduml
