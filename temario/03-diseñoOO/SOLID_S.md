@@ -35,8 +35,8 @@ De esta manera, se pueden mantener las clases de forma independiente y se reduce
 
 ## Ejemplos
 
-- [Ejemplo con empleado y salario](S_ejemplosEmpleadoSalario.md)
-- [Ejemplo con una biblioteca](S_ejemploBibliotecaPrestamo.md)
+- [Ejemplo con empleado y salario](SOLID_S_ejemplosEmpleadoSalario.md)
+- [Ejemplo con una biblioteca](SOLID_S_ejemploBibliotecaPrestamo.md)
 
 
 ## Cohesión
