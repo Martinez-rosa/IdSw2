@@ -1,11 +1,16 @@
 # Limitaciones OCP
 
-Supongamos que la universidad necesita implementar un sistema de becas y ayudas financieras. Cada tipo de alumno tiene requisitos específicos y procedimientos diferentes para la solicitud y evaluación de becas. Además, existen diferentes tipos de evaluadores de becas, cada uno especializado en un tipo particular de alumno y con criterios específicos.
+<div align=center>
 
-## Fase 1: Intento inicial con comprobaciones de tipo
+||||
+|-|-|-|
+|Supongamos que la universidad necesita implementar un sistema de becas y ayudas financieras.|Cada tipo de alumno tiene requisitos específicos y procedimientos diferentes para la solicitud y evaluación de becas.|Además, existen diferentes tipos de evaluadores de becas, cada uno especializado en un tipo particular de alumno y con criterios específicos.
+
+</div>
+
+## Fase 1: [Intento inicial con comprobaciones de tipo](OCP04)
 
 ```java
-// Nuevo requisito: Sistema de becas
 public class EvaluadorBecas {
     public void evaluarSolicitud(Alumno alumno) {
         System.out.println("Evaluando solicitud de beca para: " + alumno.getNombre());
@@ -168,10 +173,8 @@ public class Cliente {
         Universidad universidad = new Universidad();
         
         Alumno regular = new Alumno("A001", "Carlos García", "carlos@email.com");
-        AlumnoErasmus erasmus = new AlumnoErasmus("E001", "Sophie Martin", 
-                "sophie@email.com", "Francia", "Universidad de París");
-        AlumnoVirtual virtual = new AlumnoVirtual("V001", "Elena López", 
-                "elena@email.com", "Campus Virtual", false);
+        AlumnoErasmus erasmus = new AlumnoErasmus("E001", "Sophie Martin", "sophie@email.com", "Francia", "Universidad de París");
+        AlumnoVirtual virtual = new AlumnoVirtual("V001", "Elena López", "elena@email.com", "Campus Virtual", false);
         
         EvaluadorBecas evaluadorAcademico = new EvaluadorAcademico();
         EvaluadorBecas evaluadorSocioeconomico = new EvaluadorSocioeconomico();
