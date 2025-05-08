@@ -1,4 +1,4 @@
-package DOO.OCP.OCP04;
+package DOO.OCP.OCP03.SISTEMA;
 
 public class AlumnoVirtual extends Alumno {
     private String plataformaVirtual;

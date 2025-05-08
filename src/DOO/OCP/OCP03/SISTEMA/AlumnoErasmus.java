@@ -1,4 +1,4 @@
-package DOO.OCP.OCP03;
+package DOO.OCP.OCP03.SISTEMA;
 
 public class AlumnoErasmus extends Alumno {
     private String paisOrigen;

@@ -1,6 +1,6 @@
-package DOO.OCP.OCP03;
+package DOO.OCP.OCP03.SISTEMA;
 
-class Alumno {
+public class Alumno {
     private String id;
     private String nombre;
     private String email;

@@ -1,4 +1,4 @@
-package DOO.OCP.OCP04;
+package DOO.OCP.OCP04.SISTEMA;
 
 public class EvaluadorBecas {
     public void evaluarSolicitud(Alumno alumno) {
