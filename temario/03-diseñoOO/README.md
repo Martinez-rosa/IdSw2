@@ -38,7 +38,7 @@ Los principios SOLID constituyen guías de diseño que favorecen la creación de
 |-|-|-|
 |**[S](SOLID_S.md)**|SRP - Responsabilidad única - Una clase debe tener una sola razón para cambiar.|
 |**[O](SOLID_O.md)**|OCP - Abierto/Cerrado - Las entidades deben estar abiertas a la extensión pero cerradas a la modificación.|[🚬 OCP](/src/DOO/OCP/README.md) + [🚬DD](/src/DOO/DD/DD00/README.md) + [🚬pMP](/src/DOO/pMP/README.md)
-|**[L](SOLID_L.md)**|LSP - Sustitución de Liskov - Los objetos de clases derivadas deben poder sustituir a los de sus clases base.|[🚬 LSP](/src/DOO/LSP/LSP00/README.md)
+|**[L](SOLID_L.md)**|LSP - Sustitución de Liskov - Los objetos de clases derivadas deben poder sustituir a los de sus clases base.|[🚬 LSP](LSP.md) + [🚬🚬 LSP](https://github.com/mmasias/fLiskov)
 |**[I](SOLID_I.md)**|ISP - Segregación de interfaces - Los clientes no deben depender de interfaces que no usan.|
 |**[D](SOLID_D.md)**|DIP - Inversión de dependencias - Los módulos de alto nivel no deben depender de los de bajo nivel.|
 
