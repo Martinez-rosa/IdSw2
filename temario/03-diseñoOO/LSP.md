@@ -31,6 +31,8 @@ Para que `S` sea un subtipo válido de `T`, deben cumplirse las siguientes condi
 |**Invariantes**|Preservarse|Las invariantes definidas en `T` deben seguir cumpliéndose en `S`.|Las clases derivadas deben preservarlas en su totalidad<br>Las clases derivadas no pueden modificarlas, ni para fortalecerlas ni para debilitarlas
 |**Tipos de excepciones** |Ser compatibles|`S` no debe lanzar excepciones inesperadas respecto a lo que `T` promete.|Las clases derivadas deben lanzar las mismas excepciones o subtipos de ellas<br>Las clases derivadas no pueden introducir nuevas excepciones no declaradas por la clase base
 
+![](/images/modelosUML/modelosUML/liskovEITComplete.svg)
+
 </div>
 
 |Sustituibilidad completa|Principio orientado al cliente|Herencia centrada en el comportamiento observable|
