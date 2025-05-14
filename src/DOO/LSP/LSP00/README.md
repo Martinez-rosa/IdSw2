@@ -1,12 +1,14 @@
 # Ejemplo concreto de violación del principio de sustitución de Liskov (LSP)
 
-El siguiente ejemplo está diseñado para ilustrar de manera concreta y directa cómo diversas formas de especialización de una clase pueden violar el Principio de Sustitución de Liskov (LSP), a pesar de mantener una relación de herencia estructural. Se trata de un sistema bancario simplificado, donde modelamos diferentes tipos de cuentas que heredan de una clase base `CuentaBancaria`.
+El siguiente ejemplo está diseñado para ilustrar de manera concreta y directa cómo diversas formas de especialización de una clase pueden violar el Principio de Sustitución de Liskov (LSP), a pesar de mantener una relación de herencia estructural.
+
+Se trata de un sistema bancario simplificado, donde modelamos diferentes tipos de cuentas que heredan de una clase base `CuentaBancaria`.
 
 ## Escenario general
 
-La clase `CuentaBancaria` representa una cuenta simple que permite realizar depósitos y retiros, y consultar el saldo. 
+La clase `CuentaBancaria` representa una cuenta simple que permite realizar depósitos y retiros, y consultar el saldo.
 
-El contrato implícito de esta clase establece:
+El contrato implícito de esta clase establece que:
 
 - Los depósitos deben ser positivos.
 - Los retiros deben ser positivos y no superar el saldo disponible.
