@@ -90,3 +90,5 @@ SOLID no debe verse como un conjunto de reglas nuevas e independientes, sino com
 SOLID no debe verse como una panacea ni como un conjunto de reglas rígidas, sino como una aproximación elaborada a principios fundamentales de diseño modular. Su aplicación debe ser contextual y equilibrada, guiada por la experiencia y el sentido común, no por dogmas.
 
 El verdadero valor de SOLID está en su contribución a sistemas más mantenibles y adaptables, no en su aplicación ciega.
+
+> 2Think: [Luis Fernandez acerca de SOLID](https://www.youtube.com/watch?v=YqSV_RuWRV0)
