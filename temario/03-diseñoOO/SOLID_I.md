@@ -29,7 +29,6 @@ El Principio de Segregación de Interfaces fue introducido por Robert C. Martin 
 
 
 ```java
-
 interface Objeto {
     void mover();
     void hablar();
@@ -89,7 +88,7 @@ class Mapa {
 ---
 
 ```java
-java// Interfaces segregadas
+// Interfaces segregadas
 interface Movible {
     void mover();
 }
